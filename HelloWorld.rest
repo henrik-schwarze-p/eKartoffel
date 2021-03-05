@@ -1,7 +1,6 @@
-As a first App, lets create a normal Hello World:
+As a first App, lets create a normal Hello World: ::
 
-#include "AquaOS.h"
-
+    #include "AquaOS.h"
     namespace hello_world {
       void startScreen() {
         drawCenteredString("Hello World!");
