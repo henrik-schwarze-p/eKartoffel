@@ -1,3 +1,3 @@
 As a first App, lets create a normal Hello World:
 
-[[images/hello_world.png]]
+image:images/hello_world.png[width=100%]
