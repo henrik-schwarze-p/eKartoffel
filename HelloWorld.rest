@@ -21,6 +21,12 @@ The last instruction adds a button on the toolbar, to go back to the Desktop (Ho
 
 This simple application will look as follows:
 
+.. figure:: picture.png
+   :scale: 50 %
+   :alt: map to buried treasure
+
+   This is the caption of the figure (a simple paragraph).
+
 .. image:: images/hello_world.png
    :width: 200 px
    :align: center
