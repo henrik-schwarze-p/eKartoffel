@@ -9,15 +9,17 @@ As a first App, lets create a normal Hello World: ::
       }
     }
 
-All the code must be inside the given namespace. This ensures that all different Apps won't 
+All the code must be inside the given namespace. This ensures that different Apps won't 
 collide during compilation.
 
 The code to draw the main screen of the app goes inside the function *startScreen*.
 
-It is *very* *very* important that all string literals are inside the PSTR macro. If not
-sketches will crash when executed in a microcontroller.
+It is *very* *very* important that all string literals are inside the PSTR macro. If not,
+sketches will probably crash when executed in a microcontroller.
 
 The last instruction adds a button on the toolbar, to go back to the Desktop (Home).
+
+This simple application will look as follows:
 
 .. image:: images/hello_world.png
 
