@@ -22,6 +22,7 @@ The last instruction adds a button on the toolbar, to go back to the Desktop (Ho
 This simple application will look as follows:
 
 .. image:: images/hello_world.png
+   :width: 200 px
 
 Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
 
