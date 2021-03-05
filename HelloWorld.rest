@@ -1,0 +1,31 @@
+As a first App, lets create a normal Hello World: ::
+
+    #include "AquaOS.h"
+
+    namespace hello_world {
+      void startScreen() {
+        drawCenteredString(PSTR("Hello World!"));
+        toolbarAddHome();
+      }
+    }
+
+All the code must be inside the given namespace. This ensures that different Apps won't 
+collide during compilation.
+
+The code to draw the main screen of the app goes inside the function *startScreen*.
+
+It is *very* *very* important that all string literals are inside the PSTR macro. If not,
+sketches will probably crash when executed in a microcontroller.
+
+The last instruction adds a button on the toolbar, to go back to the Desktop (Home).
+
+This simple application will look as follows:
+
+.. image:: images/hello_world.png
+
+Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
+
+.. rubric:: Footnotes
+
+.. [#f1] Text of the first footnote.
+.. [#f2] Text of the second footnote.
