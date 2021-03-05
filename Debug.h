@@ -1,0 +1,3 @@
+
+void dumpHeaps();
+void dumpHeapsTxt();
