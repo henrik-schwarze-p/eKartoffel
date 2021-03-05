@@ -1,0 +1,4 @@
+As a first App, lets create a normal Hello World:
+
+.. image:: images/hello_world.*
+
