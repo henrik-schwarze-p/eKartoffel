@@ -23,7 +23,7 @@ This simple application will look as follows:
 
 .. image:: images/hello_world.png
    :width: 200 px
-   :align: right
+   :align: center
 
 Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
 
