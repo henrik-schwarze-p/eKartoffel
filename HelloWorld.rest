@@ -1,5 +1,15 @@
 As a first App, lets create a normal Hello World:
 
+#include "AquaOS.h"
+
+    namespace hello_world {
+      void startScreen() {
+        drawCenteredString("Hello World!");
+        toolbarAddHome();
+      }
+    }
+
+
 .. image:: images/hello_world.png
 
 Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
