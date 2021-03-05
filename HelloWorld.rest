@@ -21,7 +21,7 @@ The last instruction adds a button on the toolbar, to go back to the Desktop (Ho
 
 This simple application will look as follows:
 
-.. figure:: picture.png
+.. figure:: images/hello_world.png
    :scale: 50 %
    :alt: map to buried treasure
 
