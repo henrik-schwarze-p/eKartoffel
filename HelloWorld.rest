@@ -2,3 +2,9 @@ As a first App, lets create a normal Hello World:
 
 .. image:: images/hello_world.png
 
+Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
+
+.. rubric:: Footnotes
+
+.. [#f1] Text of the first footnote.
+.. [#f2] Text of the second footnote.
