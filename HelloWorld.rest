@@ -1,7 +1,7 @@
 As a first App, lets create a normal Hello World:
 
 .. image:: images/hello_world.png
- :width: 320pt
+   :width: 320pt
 
 Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
 
