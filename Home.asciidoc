@@ -48,20 +48,9 @@ namespace hello_world {
     }
 }
 ----
-<1> Use the `ifdef` to customize for online rendering (2)
-<2> Use the `ifndef` to customize for offline
-
-xxx
-
-
-....
-
-....
-<1> Holii
-
-All Sketches apps are written using callbacks, that is, functions that are called when certain
-functionality has to be performed. The function that is called when a app goes to the 
+<1> All Sketches apps are written using callbacks, that is, functions that are called when certain functionality has to be performed. The function that is called when a app goes to the 
 foreground is `startScreen`.
+<2> This function adds a *home* button in the toolbar, when pressed, the application is no longer on the foreground, and the desktop is shown.
 
 TIP: Apps are always active. They get called every second to perform it business logic, 
 but only one app can be on the foreground at a given time. In other words, only one app 
