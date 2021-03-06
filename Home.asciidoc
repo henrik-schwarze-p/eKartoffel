@@ -31,6 +31,16 @@ toc::[]
 
 == Hello World
 
+.Asciidoctor usage example. The listing should contain 5 lines.
+[source,ruby]
+----
+require 'asciidoctor'
+
+doc = Asciidoctor.load '*This* is http://asciidoc.org[AsciiDoc]!', header_footer: true
+
+puts doc.convert
+----
+
 Lets start with the following Hello World app:
 
 image::hw.png[holis]
