@@ -19,41 +19,25 @@ Lets start with the following Hello World app:
 
 image::images/hw.png[holis]
 
-All Sketches apps are written using callbacks, that is, functions that are called when certain
-functionality has to be performed. The function that is called when a app goes to the 
-foreground is `startScreen`.
-
-TIP: If you want to know what AsciiDoc is all about, find the answer in {url-docs-asciidoc}#about-asciidoc[About AsciiDoc].
-If you're looking for a concise survey of the AsciiDoc syntax, consult the {url-quickref}[AsciiDoc Syntax Quick Reference].
-
-In his function, you have
-The code for the most simple app, that is, a title, a text and a toolbar is
-
-------
-[subs=+macros] <1>
-----
-I better not contain *bold* or _italic_ text.
-pass:quotes[But I should contain *bold* text.] <2>
-----
-------
+The code is simply
 
 ....
 #include "AquaOS.h"
 
 namespace hello_world {
-    void startScreen() {
+    void startScreen() { <1>
         drawCenteredString("Hello World!");
-        toolbarAddHome();
+        toolbarAddHome(); <2>
     }
 }
 ....
 
+All Sketches apps are written using callbacks, that is, functions that are called when certain
+functionality has to be performed. The function that is called when a app goes to the 
+foreground is `startScreen`.
 
+TIP: Apps are always active. They get called every second to perform it business logic, 
+but only one app can be on the foreground at a given time. In other words, only one app 
+receives the UI events.
 
-The first configure will take a while (30 minutes to 2 hours) to clone and build, see <<benchmarking-this-repo>> for more details.
-
-
-Awesome lists:
-
-* https://github.com/gurugio/lowlevelprogramming-university
-* https://github.com/uhub/awesome-c
+In <1>
