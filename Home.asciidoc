@@ -52,7 +52,10 @@ namespace hello_world {
 foreground is `startScreen`.
 <2> This function adds a *home* button in the toolbar, when pressed, the application is no longer on the foreground, and the desktop is shown.
 
-TIP: Apps are always active. They get called every second to perform it business logic, 
-but only one app can be on the foreground at a given time. In other words, only one app 
-receives the UI events.
+TIP: Apps are always active, not only when they are in the foreground. They get called every second to perform it business logic, but only one app can be on the foreground at a given time. In other words, only one app receives the UI events.
 
+== A Counter
+
+This small applications counts how many times the toolbar button "+" is being pressed.
+
+image::counter.png[]
