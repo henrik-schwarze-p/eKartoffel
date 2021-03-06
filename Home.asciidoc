@@ -50,28 +50,18 @@ The code is simply
 include::include.adoc[]
 
 .Asciidoctor usage example. The listing should contain 5 lines.
-[source,ruby]
+[source,c]
 ----
-require 'asciidoctor'
+require 'asciidoctor' <1>
 
 doc = Asciidoctor.load '*This* is http://asciidoc.org[AsciiDoc]!', header_footer: true
 
 puts doc.convert
 ----
-
-xxx
-
-[source]
- ----
-\ifdef::env-github[] <1> (1)
-:imagesdir: https://gist.githubusercontent.com/path/to/gist/revision/dir/with/all/images
-endif::[]
-\ifndef::env-github[] <2>
-:imagesdir: ./
-endif::[]
- ----
 <1> Use the `ifdef` to customize for online rendering (2)
 <2> Use the `ifndef` to customize for offline
+
+xxx
 
 
 ....
