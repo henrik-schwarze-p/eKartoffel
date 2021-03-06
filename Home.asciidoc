@@ -1,4 +1,4 @@
-= Linux Kernel Module Cheat
+= Sketches Tutorial
 :idprefix:
 :idseparator: -
 :sectanchors:
@@ -9,18 +9,25 @@
 :toclevels: 6
 :toc-title:
 
-Holi
+This Wiki is a mix of tutorial and references for Sketches. 
 
 toc::[]
 
-== Getting started
+== Hello World
 
-Reserve 12Gb of disk and run:
+The code for the most simple app, that is, a title, a text and a toolbar is
 
 ....
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat
-cd linux-kernel-module-cheat
-./configure && ./build && ./run
+#include "AquaOS.h"
+
+namespace hello_world {
+
+    void startScreen() {
+        drawCenteredString("Hello World!");
+        toolbarAddHome();
+    }
+
+}
 ....
 
 The first configure will take a while (30 minutes to 2 hours) to clone and build, see <<benchmarking-this-repo>> for more details.
