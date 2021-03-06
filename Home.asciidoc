@@ -60,6 +60,8 @@ TIP: Apps are always active, not only when they are in the foreground. They get 
 
 This small applications counts how many times the toolbar button "+" is being pressed.
 
+image::counter.png[]
+
 [source,c]
 ----
 #include "AquaOS.h"
@@ -81,10 +83,13 @@ namespace hello_world {
 ----
 <1> We need the function prototype to help C++ compile.
 <2> The variable we count the number of presses.
-<3> Any function with this signature `void function(int param)` is called a *command* in Sketches. Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature.
+<3> Any function with this signature `void function(int param)` is called a *command* in Sketches. 
 <4> A command can ask a screen to be drawn, using the `goToScreen(screen)` function. In this case, the screen that shows how many presses have been there, is also `startScreen`. 
 <5> `startScreen` is called when the app goes to foreground *and* when the count function is invoked.
 <6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance.
 
+=== Commands
 
-image::counter.png[]
+Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature. Commands can change the screen to another one. For example, a command `configure(int param)` could show a new screen with the calibration info and a toolbar adapted to calibration actions.
+
+
