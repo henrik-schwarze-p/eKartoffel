@@ -92,4 +92,10 @@ namespace hello_world {
 
 Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature. Commands can change the screen to another one. For example, a command `configure(int param)` could show a new screen with the calibration info and a toolbar adapted to calibration actions.
 
+== Persistent Variables
+
+In *A Counter* the variable counter will be reset to 0 everytime the microcontroller is powered off. There is a mechanism in Sketches that will keep the value of a variable in the EEPROM. This is very handy in apps that have a configuration, if this configuration would be deleted every time the microcontroller is disconnected, then it would be a lot of work to reconfigure it every time.
+
+TIP | hola
+
 
