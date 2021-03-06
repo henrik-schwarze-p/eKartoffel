@@ -101,6 +101,7 @@ In *A Counter* the variable counter will be reset to 0 everytime the microcontro
 =====
 Persistent variables should not be changed frequently. Plan to change a persistent variable less than 10.000 times during the app *life*. There is no problem reading the value of the variable as many times as you want!
 
+
 [source,c]
 ----
 #include "AquaOS.h"
@@ -111,11 +112,11 @@ namespace counter {
     int counter=0;
 
     void whenCreated() { <1>
-        counter = 0;
+        counter = 0; <2>
     }
 	
-    void registerVars() { <2>
-        pregister(&counter);
+    void registerVars() { <3>
+        pregister(&counter); <4>
     }
 
     void count(int param) {
@@ -132,3 +133,15 @@ namespace counter {
 
 }
 ----
+<1> When using persistent variables, they have to be initialized in the `whenCreated` function. 
+<2> The variable is assigned a value, in a normal way. The asignment to the EEPROM happens automatically.
+<3> This function turns the variable into a persistent variable. 
+<4> The funcion name is `pregister`, and it is overloaded, so that it can be called with different parameter types. 
+
+=== whenCreated()
+
+This function will be called only once in the whole app lifetime. If the microcontroller is disconnected and connected again, this function won't be called. You can put more initialisation code here, 
+
+=== registerVars()
+
+This function should only register variables (with `pregister` and `mregister`). This function will be called in the background constantly by Sketches. Don't write any business logic here.
