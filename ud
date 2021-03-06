@@ -1,4 +1,5 @@
 cd $HOME/sketches.wiki
 git add -A
+git add -A images
 git commit -m "Added text to the documentation"
 git push
