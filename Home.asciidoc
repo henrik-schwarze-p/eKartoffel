@@ -31,6 +31,7 @@ namespace hello_world {
     }
 }
 ....
+<1> Holii
 
 All Sketches apps are written using callbacks, that is, functions that are called when certain
 functionality has to be performed. The function that is called when a app goes to the 
@@ -40,4 +41,3 @@ TIP: Apps are always active. They get called every second to perform it business
 but only one app can be on the foreground at a given time. In other words, only one app 
 receives the UI events.
 
-<1> Holii
