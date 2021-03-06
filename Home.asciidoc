@@ -181,7 +181,85 @@ There are three possibilities:
 * APP_CARDINALITY_ALWAYS_ONE
 * APP_CARDINALITY_MAX_ONE
 
-If you run only one instance of 
-Sketches has the ability to run many instances of the same app concurrently. 
+== Multiple Instance Apps
 
-=== registerVars()
+By default, Sketches allows many instances of an app to be run concurrently. This presents a major problem, the declared variables are shared between all the instances. This may be ok sometimes, but normally you want each instance to have its own variable space. Fortunately, the mechanism is almost exactly the same as using persistent variables.
+
+TIP: Persistent variables are automatically allocated for each instance, and not shared. Only variables that are volatile (in the RAM), have to be registered.
+
+The following is a version where counter can have many instances, and the variables are volatile.
+
+[source,c]
+----
+#include "AquaOS.h"
+
+namespace counter {
+    int counter=0;
+
+    void whenPowered() { <1>
+        counter = 0; <2>
+    }
+	
+    void registerVars() { <3>
+        mregister(&counter); <4>
+    }
+
+    void count(int param) {
+	...
+	
+    void startScreen() {
+		...
+}
+----
+<1> When using persistent variables, they have to be initialized in the `whenPowered` function. 
+<2> The variable is assigned a value, in a normal way. 
+<3> This function turns the variable into a variable that can have different values for each instance. 
+<4> The funcion name is `mregister`, and it is overloaded, so that it can be called with different parameter types. 
+
+=== whenPowered()
+
+This function is called every time the microcontroller is powered up. You can put any code you want here, but normally, the RAM variables are initialized.
+
+=== registerVars() for multiple RAM variable instances
+
+The variables that should not be shared, that is, the variables that should be owned by each instance, should be registered using `mregister`. A use case, would be a PH meter that averages the last 10 readings and shows that value. There is no use in putting those values in the EEPROM (as they change all the time), so it is better to put them in RAM. It is important that each of these values is *protected* for each instance, you don't want the values for different probes to be mixed.
+
+== The Monitor
+
+It is possible to use one microcontroller with Sketches to perform many tasks concurrently. For example, you could have one microcontroller measuring the PHs of 4 aquariums. As said before, the philosophy of Sketches is to write one app that measures the PH of one aquarium, and then have 4 instances of this app running concurrently.
+
+The problem that arouses is how to show the information of all probes concurrently. If each instance is independent, and has no access to the others, how can you consolidate all the information in one screen?
+
+The answer is the use of the Monitor app. 
+
+image::monitor.png[]
+
+The monitor asks each instance which information they want to show in a small portion of the screen (that is already small).
+
+=== void monitor(int x, int y, int w, int h)
+
+This function has to be implemented by each app that wants to show it state in the monitor. For example, the Water Alarm app shows a color rectangle in the monitor. Green if water is not being touch, red if it is.
+
+[source,c]
+----
+void monitor(int x, int y, int w, int h) { <1>
+    if (!configured()) { <2>
+       setPrintX(x + margin);
+       setPrintY(y + margin);
+       setColor(colorWhite);
+       drawString(PSTR("Not Configured"), x + margin, y + margin);
+    }
+    fillRect(x, y, w, h); <3>
+    setColor(colorRed); <4>
+    if (!touching())
+       setColor(colorGreen);
+    fillRect(x + 5 * margin, y + 2 * margin, w - 10 * margin, h - 4 * margin);
+}
+----
+<1> The parameters represent a rectangle in the screen (x,y,x+w,y+h). Normally, the screen is splitted in 4 parts, but this could change in the future.
+<2> If the instance is not configured (this is internal to that app), the message "Not configured" is shown in the monitor.
+<3> The whole area is filled with the default background color
+<4> A smaller rect is drawn, representing if water is being touched. `touching()` is a function that looks at the value of a digital port, connected to the water sensor.
+
+== The State ==
+
