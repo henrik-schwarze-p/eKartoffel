@@ -74,9 +74,9 @@ namespace hello_world {
         goToScreen(startScreen); <4>
     }
     void startScreen() { <5>
-        print("Counting:");
+        print(PSTR("Counting:")); // PSTR is important!
         print(counter);
-        toolbarAdd("+", count, 0); <6>
+        toolbarAdd(PSTR("+"), count, 0); <6> 
         toolbarAddHome();
     }
 }
@@ -86,7 +86,7 @@ namespace hello_world {
 <3> Any function with this signature `void function(int param)` is called a *command* in Sketches. 
 <4> A command can ask a screen to be drawn, using the `goToScreen(screen)` function. In this case, the screen that shows how many presses have been there, is also `startScreen`. 
 <5> `startScreen` is called when the app goes to foreground *and* when the count function is invoked.
-<6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance.
+<6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance. PSTR is important, if missing, Sketches would crash.
 
 === Commands
 
