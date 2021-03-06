@@ -1,1 +1,1 @@
-convert $1 -crop 640x480+0+22 -scale 50% -bordercolor black -border 1  images/$2.png
+convert $1 -crop 640x480+0+44 -scale 50% -bordercolor black -border 1  images/$2.png
