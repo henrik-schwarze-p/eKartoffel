@@ -35,6 +35,8 @@ Lets start with the following Hello World app. All apps in Sketches have 3 regio
 
 image::hw.png[]
 
+=== startScreen(void)
+
 The code is quite simple:
 
 [source,c]
