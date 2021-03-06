@@ -1,13 +1,23 @@
-= Sketches Tutorial
+Dan Allen <thedoc@asciidoctor.org>
+:description: A demo of Asciidoctor. This document \
+              exercises numerous features of AsciiDoc \
+              to test Asciidoctor compliance.
+:library: Asciidoctor
 :idprefix:
-:idseparator: -
-:sectanchors:
-:sectlinks:
-:sectnumlevels: 6
-:sectnums:
-:toc: macro
-:toclevels: 6
-:toc-title:
+:numbered:
+:imagesdir: images
+:experimental:
+//:toc: macro
+:toc: preamble
+:toc-title: pass:[<h3>Contents</h3>]
+:css-signature: demo
+//:max-width: 800px
+//:doctype: book
+//:sectids!:
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+endif::[]
 
 This Wiki is a mix of tutorial and references for Sketches. 
 
