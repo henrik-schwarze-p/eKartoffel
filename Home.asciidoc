@@ -31,15 +31,12 @@ toc::[]
 
 == Hello World
 
-.Asciidoctor usage example. The listing should contain 5 lines.
-
 Lets start with the following Hello World app:
 
 image::hw.png[]
 
-The code is 
+The code is quite simple:
 
-.Asciidoctor usage example. The listing should contain 5 lines.
 [source,c]
 ----
 #include "AquaOS.h"
