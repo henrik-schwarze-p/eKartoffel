@@ -1,4 +1,3 @@
-x
 = Sketches Tutorial
 :idprefix:
 :idseparator: -
@@ -16,9 +15,15 @@ toc::[]
 
 == Hello World
 
-All Sketches apps are written using callbacks, that is, functions that are called when certain functionality has 
-to be performed. The function that is called when a app goes to the foreground is `startScreen`.
+Lets start with the following Hello World app:
 
+image::hw.png
+
+All Sketches apps are written using callbacks, that is, functions that are called when certain
+functionality has to be performed. The function that is called when a app goes to the 
+foreground is `startScreen`.
+
+In his function, you have
 The code for the most simple app, that is, a title, a text and a toolbar is
 
 ....
