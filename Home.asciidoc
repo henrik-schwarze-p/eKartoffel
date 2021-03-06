@@ -51,7 +51,7 @@ namespace hello_world {
 }
 ----
 <1> All Sketches apps are written using callbacks, that is, functions that are called when certain functionality has to be performed. The function that is called when a app goes to the 
-foreground is `startScreen`.
+foreground is `startScreen`. 
 <2> This function adds a *home* button in the toolbar, when pressed, the application is no longer on the foreground, and the desktop is shown.
 
 TIP: Apps are always active, not only when they are in the foreground. They get called every second to perform it business logic, but only one app can be on the foreground at a given time. In other words, only one app receives the UI events.
@@ -59,5 +59,32 @@ TIP: Apps are always active, not only when they are in the foreground. They get 
 == A Counter
 
 This small applications counts how many times the toolbar button "+" is being pressed.
+
+[source,c]
+----
+#include "AquaOS.h"
+
+namespace hello_world {
+    void startScreen(); <1>
+    int counter=0;      <2>
+    void count(int param) { <3>
+        counter++;
+        goToScreen(startScreen); <4>
+    }
+    void startScreen() { <5>
+        print("Counting:");
+        print(counter);
+        toolbarAdd("+", count, 0); <6>
+        toolbarAddHome();
+    }
+}
+----
+<1> We need the function prototype to help C++ compile.
+<2> The variable we count the number of presses.
+<3> Any function with this signature `void function(int param)` is called a *command* in Sketches. Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature.
+<4> A command can ask a screen to be drawn, using the `goToScreen(screen)` function. In this case, the screen that shows how many presses have been there, is also `startScreen`. 
+<5> `startScreen` is called when the app goes to foreground *and* when the count function is invoked.
+<6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance.
+
 
 image::counter.png[]
