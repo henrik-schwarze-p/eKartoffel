@@ -40,4 +40,4 @@ TIP: Apps are always active. They get called every second to perform it business
 but only one app can be on the foreground at a given time. In other words, only one app 
 receives the UI events.
 
-In <1>
+<1> Holii
