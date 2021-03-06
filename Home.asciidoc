@@ -31,7 +31,7 @@ toc::[]
 
 == Hello World
 
-Lets start with the following Hello World app:
+Lets start with the following Hello World app. All apps in Sketches have 3 regions. An upper bar, where the name of the app is displayed, the amount of EEPROM and RAM memory available, and also the time.
 
 image::hw.png[]
 
