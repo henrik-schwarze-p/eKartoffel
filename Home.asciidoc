@@ -1,4 +1,4 @@
-= Asciidoctor Demo
+= Asciidoctor Demox
 ////
 Big ol' comment
 
@@ -60,7 +60,7 @@ TIP: Apps are always active, not only when they are in the foreground. They get 
 
 This small applications counts how many times the toolbar button "+" is being pressed.
 
-image::counter2.png[]
+image::plop.png[]
 
 [source,c]
 ----
