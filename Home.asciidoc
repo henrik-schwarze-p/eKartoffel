@@ -17,7 +17,7 @@ toc::[]
 
 Lets start with the following Hello World app:
 
-image::hw.png
+image::images/hw.png[holis]
 
 All Sketches apps are written using callbacks, that is, functions that are called when certain
 functionality has to be performed. The function that is called when a app goes to the 
