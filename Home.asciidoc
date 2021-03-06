@@ -33,7 +33,7 @@ toc::[]
 
 Lets start with the following Hello World app:
 
-image::images/hw.png[holis]
+image::hw.png[holis]
 
 The code is simply
 
