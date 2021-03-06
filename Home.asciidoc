@@ -23,6 +23,9 @@ All Sketches apps are written using callbacks, that is, functions that are calle
 functionality has to be performed. The function that is called when a app goes to the 
 foreground is `startScreen`.
 
+TIP: If you want to know what AsciiDoc is all about, find the answer in {url-docs-asciidoc}#about-asciidoc[About AsciiDoc].
+If you're looking for a concise survey of the AsciiDoc syntax, consult the {url-quickref}[AsciiDoc Syntax Quick Reference].
+
 In his function, you have
 The code for the most simple app, that is, a title, a text and a toolbar is
 
