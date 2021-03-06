@@ -26,6 +26,14 @@ foreground is `startScreen`.
 In his function, you have
 The code for the most simple app, that is, a title, a text and a toolbar is
 
+------
+[subs=+macros] <1>
+----
+I better not contain *bold* or _italic_ text.
+pass:quotes[But I should contain *bold* text.] <2>
+----
+------
+
 ....
 #include "AquaOS.h"
 
