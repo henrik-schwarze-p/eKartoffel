@@ -1,5 +1,4 @@
-= Sketches Tutorial
-
+= Asciidoctor Demo
 ////
 Big ol' comment
 
@@ -26,7 +25,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 endif::[]
 
-This Wiki is a mix of tutorial and reference for Sketches. 
+This Wiki is a mix of tutorial and references for Sketches. 
 
 toc::[]
 
@@ -35,8 +34,6 @@ toc::[]
 Lets start with the following Hello World app. All apps in Sketches have 3 regions. An upper bar, where the name of the app is displayed, the amount of EEPROM and RAM memory available, and also the time.
 
 image::hw.png[]
-
-=== startScreen
 
 The code is quite simple:
 
