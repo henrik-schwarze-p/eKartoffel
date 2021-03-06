@@ -96,8 +96,9 @@ Commands are called when a button is pressed in the toolbar. The *param* paramet
 
 In *A Counter* the variable counter will be reset to 0 everytime the microcontroller is powered off. There is a mechanism in Sketches that will keep the value of a variable in the EEPROM. This is very handy in apps that have a configuration, if this configuration would be deleted every time the microcontroller is disconnected, then it would be a lot of work to reconfigure it every time.
 
-TIP: Persistent variables should not be changed frequently. Plan to change a persistent variable less than 10.000 times during the app *life*. There is no problem reading the value of the variable as many times as you want!
+The use of persistant variables is almost transparent. There is no need to access the EEPROM directly, and only 2 functions have to be added, regardless of the amount of variables.
 
+TIP: Persistent variables should not be changed frequently. Plan to change a persistent variable less than 10.000 times during the app *lifetime*. There is no problem reading the value of the variable as many times as you want!
 
 [source,c]
 ----
@@ -142,3 +143,45 @@ This function will be called only once in the whole app lifetime. If the microco
 === registerVars()
 
 This function should only register variables (with `pregister` and `mregister`). This function will be called in the background constantly by Sketches. Don't write any business logic here.
+
+== Singleton App Instance
+
+The philosophy of Sketches is that one App should be as simple as possible, and deal only with one hardware component. If you want to handle many similar hardware pieces, you should create many instances of the same App. In objected oriented programming, you would think of an app as the class, and the instances as the objects of that class.
+
+For example, if you have an App that measures the PH of an aquarium, and you would like to measure many aquarium concurrently, then you would be tempted to write code that could manage many analog ports, keep the configuration of each probe, etc. This would make the app difficult to write, difficult to operate, and also unflexible (see Scripting). The preferred approach is to write an app that can handle *one* probe very good, and then create *many* instances of this app, each one of them independent.
+
+If you want Sketches to avoid running more than one instance of one application, you have to implement the `cardinality()` function, returning `APP_CARDINALITY_ALWAYS_ONE` or `APP_CARDINALITY_MAX_ONE`
+
+[source,c]
+----
+...
+namespace counter {
+    void startScreen();
+    int counter=0;
+	...
+
+    void whenCreated() {
+		...
+		
+	int cardinality() {
+		return APP_CARDINALITY_ALWAYS_ONE;
+	}
+----
+
+If you return `APP_CARDINALITY_ALWAYS_ONE`, then Sketches will create automatically one instance of the app when first powered on, it won't allow to delete it, nor to add a new instance of it. This is used by many default apps, that always have to be running (like the PortManager, or the Admin app).
+
+On the other hand, if you return `APP_CARDINALITY_MAX_ONE`, you can delete the instance of the app, or create one instance, but not two.
+
+=== int cardinality()
+
+If you want to force it to run at most one instance of an application, you have to declare the function `int cardinality()` and return how many instances you want to allow.
+
+There are three possibilities:
+
+* APP_CARDINALITY_ALWAYS_ONE
+* APP_CARDINALITY_MAX_ONE
+
+If you run only one instance of 
+Sketches has the ability to run many instances of the same app concurrently. 
+
+=== registerVars()
