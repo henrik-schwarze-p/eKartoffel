@@ -32,39 +32,16 @@ toc::[]
 == Hello World
 
 .Asciidoctor usage example. The listing should contain 5 lines.
-[source,ruby]
-----
-require 'asciidoctor'
-
-doc = Asciidoctor.load '*This* is http://asciidoc.org[AsciiDoc]!', header_footer: true
-
-puts doc.convert
-----
 
 Lets start with the following Hello World app:
 
-image::hw.png[holis]
+image::hw.png[]
 
-The code is simply
-
-include::include.adoc[]
+The code is 
 
 .Asciidoctor usage example. The listing should contain 5 lines.
 [source,c]
 ----
-require 'asciidoctor' <1>
-
-doc = Asciidoctor.load '*This* is http://asciidoc.org[AsciiDoc]!', header_footer: true
-
-puts doc.convert
-----
-<1> Use the `ifdef` to customize for online rendering (2)
-<2> Use the `ifndef` to customize for offline
-
-xxx
-
-
-....
 #include "AquaOS.h"
 
 namespace hello_world {
@@ -73,6 +50,15 @@ namespace hello_world {
         toolbarAddHome(); <2>
     }
 }
+----
+<1> Use the `ifdef` to customize for online rendering (2)
+<2> Use the `ifndef` to customize for offline
+
+xxx
+
+
+....
+
 ....
 <1> Holii
 
