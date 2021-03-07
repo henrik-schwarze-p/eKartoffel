@@ -263,6 +263,31 @@ void monitor(int x, int y, int w, int h) { <1>
 
 == The State ==
 
+The Monitor code in last section has a problem: it flickers. Microcontrollers don't use any kind of double buffering, and that means that if you redraw an area of the screen and aren't  careful, you will see flickering.
+
+App can implement the `int state()` function, that returns a 16-bit number with a self-defined state, with the goal to tell Sketches if the app has changed since the last call to this function.
+
+For example, state 0 may be *not configured*. If Sketches call this function for an app, and the app returns 0, and then it again returns 0, then Sketches has a hint that nothing has happened in this app. In a PH app, the state can be 0 if not configured, 10 if the last measured PH is 1.0, 30 if the last values was 3.0, etc. 
+
+The Monitor uses the state to know when to redraw its contents.
+
+The state function of the PH app is 
+
+[source,c]
+----
+int state() {
+    if (!configured())
+        return STATE_NOT_CONFIGURED; <1>
+    return (int)(10.0*ph());
+}
+----
+<1> STATE_NOT_CONFIGURED is a special value, that is used by the monitor to display a "not configured" message.
+
+
+
+	
+Sketches allow apps to communicate their *state*; a 16-bit number us
+
 == Gluing ==
 
 A big challenge for microcontroller apps is to provide the user with enough flexibility to use them in different scenarios. A big "monolithic" app can do probably one specific task very good. For example, a PH controller can open a valve if an aquarium water turns basic. If the user wants to also close another valve, then he should download a PH app that also allows to perform two actions when the water meets some criteria.
@@ -294,8 +319,8 @@ If there are two PH apps, and two solenoids, one controller could manage two aqu
 
 - If the PH for 1 > 6.5
   * open the CO2 solenoid for 1
-- If the PH for 2 < 6.3
-  * close the CO2 solenoid 2
+- If the PH for 2 > 6.5
+  * open the CO2 solenoid for 2
   
 That is, every app provides conditions independently from the other apps.
 
@@ -307,24 +332,4 @@ Conditions can be ANDed
 
 will release food when the PH is in the range ]6.3,6.5[
 
-
-
-As said before, the philosophy of Sketches is to have apps that do just one task, but do it good. For example, allow configuration, have a nice interface, show the state in the monitor, etc.
-
-
-
-Furthermore, it is a good idea to design apps that only measure things or perform actions, and 
-* 
-
-Allowing scripting in Sketches would be very difficult. First, a interpreted language should be designed, a parser and interpreter created, everything in a very restricted environment. This should also be easy to be understood and edited in a limited GUI.
-
-Most apps in Sketches f
-
-The approach of Sketches to scripting has three pillars:
-
-1) Apps should be small, and do one task good
-
-2) Apps should be able to expose their state 
-
-3) Worst case, apps 
-For example, 
+Sketches provides all the scaffolding needed to allow apps to be used by the rule system.
