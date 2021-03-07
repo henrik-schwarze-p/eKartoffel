@@ -263,3 +263,68 @@ void monitor(int x, int y, int w, int h) { <1>
 
 == The State ==
 
+== Gluing ==
+
+A big challenge for microcontroller apps is to provide the user with enough flexibility to use them in different scenarios. A big "monolithic" app can do probably one specific task very good. For example, a PH controller can open a valve if an aquarium water turns basic. If the user wants to also close another valve, then he should download a PH app that also allows to perform two actions when the water meets some criteria.
+
+What happens if the user wants to open a valve when the PH is less than 7.0, but open another one when the PH is less than 6.0?
+
+One can only hope that the creator of the app wrote an app so powerful that can be configured without end. The problem is, of course, that such an application would be big, difficult to write and configure, and probably difficult to understand.
+
+One solution, is to clone the app in the store, and modify the C code to allow for needed tweaking. This is a possible way, but has itself at least two problems. The first, we could end with tens of different PH applications. The second, a user has to know how to write basic C code for this. That is not that bad, at least it is better than the complications of including a scripting language in Sketches.
+
+But there is a third way to handle this problem: allowing some kind of interapp communication using a rule system.
+
+The main idea is to create apps that are sensors or actors (when possible):
+
+Sensors::
+    These apps measure certain value(s), and provide *conditions* for the other apps. To name a few, a PH app could provide the following conditions: basic, alcaline, PH lower than some value, PH higher than some value or PH changed more than some quantity in the last 10 minutes.
+
+Actors:
+    These apps take actions, open a valve, send a sms, close a solenoid, write a value to an analog port, etc. For example, the solenoid app provides just two actions: turn a digital port on (or off) for at least n seconds.
+	
+Sketches allows the user to "glue" these apps using a rule system. For example, the user can specify rules like
+
+- If the PH > 6.5
+  * open the CO2 solenoid
+- If the PH < 6.3
+  * close the CO2 solenoid
+  
+If there are two PH apps, and two solenoids, one controller could manage two aquariums with the following rules:
+
+- If the PH for 1 > 6.5
+  * open the CO2 solenoid for 1
+- If the PH for 2 < 6.3
+  * close the CO2 solenoid 2
+  
+That is, every app provides conditions independently from the other apps.
+
+Conditions can be ANDed
+
+- If the PH > 6.3
+- If the PH < 6.5
+  * release food 
+
+will release food when the PH is in the range ]6.3,6.5[
+
+
+
+As said before, the philosophy of Sketches is to have apps that do just one task, but do it good. For example, allow configuration, have a nice interface, show the state in the monitor, etc.
+
+
+
+Furthermore, it is a good idea to design apps that only measure things or perform actions, and 
+* 
+
+Allowing scripting in Sketches would be very difficult. First, a interpreted language should be designed, a parser and interpreter created, everything in a very restricted environment. This should also be easy to be understood and edited in a limited GUI.
+
+Most apps in Sketches f
+
+The approach of Sketches to scripting has three pillars:
+
+1) Apps should be small, and do one task good
+
+2) Apps should be able to expose their state 
+
+3) Worst case, apps 
+For example, 
