@@ -271,7 +271,7 @@ For example, state 0 may be *not configured*. If Sketches call this function for
 
 The Monitor uses the state to know when to redraw its contents.
 
-The state function of the PH app is 
+As an example, consider the state function of the PH app:
 
 [source,c]
 ----
@@ -283,10 +283,7 @@ int state() {
 ----
 <1> STATE_NOT_CONFIGURED is a special value, that is used by the monitor to display a "not configured" message.
 
-
-
-	
-Sketches allow apps to communicate their *state*; a 16-bit number us
+If the state function is not implemented, Sketches assumes the state of the app is always changing (the same as STATE_CHANGED)
 
 == Gluing ==
 
@@ -333,3 +330,10 @@ Conditions can be ANDed
 will release food when the PH is in the range ]6.3,6.5[
 
 Sketches provides all the scaffolding needed to allow apps to be used by the rule system.
+
+== Logging ==
+
+= API =
+
+== Drawing ==
+
