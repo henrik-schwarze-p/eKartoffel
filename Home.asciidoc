@@ -1,4 +1,4 @@
-= Asciidoctor Demox
+= Sketches Documentation
 ////
 Big ol' comment
 
@@ -29,7 +29,9 @@ This Wiki is a mix of tutorial and references for Sketches.
 
 toc::[]
 
-== Hello World
+== A Simple Tutorial
+
+=== Hello World
 
 Lets start with the following Hello World app. All apps in Sketches have 3 regions. An upper bar, where the name of the app is displayed, the amount of EEPROM and RAM memory available, and also the time.
 
@@ -56,7 +58,7 @@ foreground is `startScreen`.
 
 TIP: Apps are always active, not only when they are in the foreground. They get called every second to perform it business logic, but only one app can be on the foreground at a given time. In other words, only one app receives the UI events.
 
-== A Counter
+=== A Counter
 
 This small applications counts how many times the toolbar button "+" is being pressed.
 
@@ -88,11 +90,11 @@ namespace counter {
 <5> `startScreen` is called when the app goes to foreground *and* when the count function is invoked.
 <6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance. PSTR is important, if missing, Sketches would crash.
 
-=== Commands
+==== Commands
 
 Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature. Commands can change the screen to another one. For example, a command `configure(int param)` could show a new screen with the calibration info and a toolbar adapted to calibration actions.
 
-== Persistent Variables
+=== Persistent Variables
 
 In *A Counter* the variable counter will be reset to 0 everytime the microcontroller is powered off. There is a mechanism in Sketches that will keep the value of a variable in the EEPROM. This is very handy in apps that have a configuration, if this configuration would be deleted every time the microcontroller is disconnected, then it would be a lot of work to reconfigure it every time.
 
@@ -136,15 +138,15 @@ namespace counter {
 <3> This function turns the variable into a persistent variable. 
 <4> The funcion name is `pregister`, and it is overloaded, so that it can be called with different parameter types. 
 
-=== whenCreated()
+==== whenCreated()
 
 This function will be called only once in the whole app lifetime. If the microcontroller is disconnected and connected again, this function won't be called. You can put more initialisation code here, 
 
-=== registerVars()
+==== registerVars()
 
 This function should only register variables (with `pregister` and `mregister`). This function will be called in the background constantly by Sketches. Don't write any business logic here.
 
-== Singleton App Instance
+=== Singleton App Instance
 
 The philosophy of Sketches is that one App should be as simple as possible, and deal only with one hardware component. If you want to handle many similar hardware pieces, you should create many instances of the same App. In objected oriented programming, you would think of an app as the class, and the instances as the objects of that class.
 
@@ -172,7 +174,7 @@ If you return `APP_CARDINALITY_ALWAYS_ONE`, then Sketches will create automatica
 
 On the other hand, if you return `APP_CARDINALITY_MAX_ONE`, you can delete the instance of the app, or create one instance, but not two.
 
-=== int cardinality()
+==== int cardinality()
 
 If you want to force it to run at most one instance of an application, you have to declare the function `int cardinality()` and return how many instances you want to allow.
 
@@ -181,7 +183,7 @@ There are three possibilities:
 * APP_CARDINALITY_ALWAYS_ONE
 * APP_CARDINALITY_MAX_ONE
 
-== Multiple Instance Apps
+=== Multiple Instance Apps
 
 By default, Sketches allows many instances of an app to be run concurrently. This presents a major problem, the declared variables are shared between all the instances. This may be ok sometimes, but normally you want each instance to have its own variable space. Fortunately, the mechanism is almost exactly the same as using persistent variables.
 
@@ -216,15 +218,15 @@ namespace counter {
 <3> This function turns the variable into a variable that can have different values for each instance. 
 <4> The funcion name is `mregister`, and it is overloaded, so that it can be called with different parameter types. 
 
-=== whenPowered()
+==== whenPowered()
 
 This function is called every time the microcontroller is powered up. You can put any code you want here, but normally, the RAM variables are initialized.
 
-=== registerVars() for multiple RAM variable instances
+==== registerVars() for multiple RAM variable instances
 
 The variables that should not be shared, that is, the variables that should be owned by each instance, should be registered using `mregister`. A use case, would be a PH meter that averages the last 10 readings and shows that value. There is no use in putting those values in the EEPROM (as they change all the time), so it is better to put them in RAM. It is important that each of these values is *protected* for each instance, you don't want the values for different probes to be mixed.
 
-== The Monitor
+=== The Monitor
 
 It is possible to use one microcontroller with Sketches to perform many tasks concurrently. For example, you could have one microcontroller measuring the PHs of 4 aquariums. As said before, the philosophy of Sketches is to write one app that measures the PH of one aquarium, and then have 4 instances of this app running concurrently.
 
@@ -236,7 +238,7 @@ image::monitor.png[]
 
 The monitor asks each instance which information they want to show in a small portion of the screen (that is already small).
 
-=== void monitor(int x, int y, int w, int h)
+==== void monitor(int x, int y, int w, int h)
 
 This function has to be implemented by each app that wants to show it state in the monitor. For example, the Water Alarm app shows a color rectangle in the monitor. Green if water is not being touch, red if it is.
 
@@ -261,7 +263,7 @@ void monitor(int x, int y, int w, int h) { <1>
 <3> The whole area is filled with the default background color
 <4> A smaller rect is drawn, representing if water is being touched. `touching()` is a function that looks at the value of a digital port, connected to the water sensor.
 
-== The State ==
+=== The State
 
 The Monitor code in last section has a problem: it flickers. Microcontrollers don't use any kind of double buffering, and that means that if you redraw an area of the screen and aren't  careful, you will see flickering.
 
@@ -285,7 +287,7 @@ int state() {
 
 If the state function is not implemented, Sketches assumes the state of the app is always changing (the same as STATE_CHANGED)
 
-== Gluing ==
+=== Gluing
 
 A big challenge for microcontroller apps is to provide the user with enough flexibility to use them in different scenarios. A big "monolithic" app can do probably one specific task very good. For example, a PH controller can open a valve if an aquarium water turns basic. If the user wants to also close another valve, then he should download a PH app that also allows to perform two actions when the water meets some criteria.
 
@@ -331,9 +333,9 @@ will release food when the PH is in the range ]6.3,6.5[
 
 Sketches provides all the scaffolding needed to allow apps to be used by the rule system.
 
-== Logging ==
+=== Logging 
 
-= API =
+== API 
 
-== Drawing ==
+=== Drawing 
 
