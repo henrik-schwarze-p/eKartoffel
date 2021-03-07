@@ -17,15 +17,13 @@ Dan Allen <thedoc@asciidoctor.org>
 :toc: preamble
 :toc-title: pass:[<h3>Contents</h3>]
 :css-signature: demo
-:max-width: 500px
+//:max-width: 800px
 //:doctype: book
 //:sectids!:
 ifdef::env-github[]
 :note-caption: :information_source:
 :tip-caption: :bulb:
 endif::[]
-
-This Wiki is a mix of tutorial and references for Sketches. 
 
 toc::[]
 
