@@ -280,7 +280,7 @@ The main idea is to create apps that are sensors or actors (when possible):
 Sensors::
     These apps measure certain value(s), and provide *conditions* for the other apps. To name a few, a PH app could provide the following conditions: basic, alcaline, PH lower than some value, PH higher than some value or PH changed more than some quantity in the last 10 minutes.
 
-Actors:
+Actors::
     These apps take actions, open a valve, send a sms, close a solenoid, write a value to an analog port, etc. For example, the solenoid app provides just two actions: turn a digital port on (or off) for at least n seconds.
 	
 Sketches allows the user to "glue" these apps using a rule system. For example, the user can specify rules like
