@@ -17,7 +17,7 @@ Dan Allen <thedoc@asciidoctor.org>
 :toc: preamble
 :toc-title: pass:[<h3>Contents</h3>]
 :css-signature: demo
-//:max-width: 800px
+//:max-width: 1800px
 //:doctype: book
 //:sectids!:
 ifdef::env-github[]
@@ -337,5 +337,10 @@ Sketches provides all the scaffolding needed to allow apps to be used by the rul
 
 == API 
 
+=== Screens
+
 === Drawing 
 
+=== Logging
+
+=== R
