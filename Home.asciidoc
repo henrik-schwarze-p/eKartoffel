@@ -17,7 +17,7 @@ Dan Allen <thedoc@asciidoctor.org>
 :toc: preamble
 :toc-title: pass:[<h3>Contents</h3>]
 :css-signature: demo
-:max-width: 800px
+:max-width: 500px
 //:doctype: book
 //:sectids!:
 ifdef::env-github[]
