@@ -3,7 +3,7 @@
 #include "PMClock.h"
 
 // The kernel keeps the time
-int _clockYear, _clockMonth, _clockDay, _clockHours, _clockMin, _clockSecs;
+int  _clockYear, _clockMonth, _clockDay, _clockHours, _clockMin, _clockSecs;
 long _longCount;
 
 // Adapted from https://stackoverflow.com/questions/7960318/math-to-convert-seconds-since-1970-into-date-and-vice-versa
@@ -103,7 +103,6 @@ long clockEpoch() {
     return _longCount;
 }
 
-
 void setClockSecs(int secs) {
     _clockSecs = secs;
 }
@@ -111,7 +110,7 @@ void setClockSecs(int secs) {
 frequencyType incrementOneSecond() {
     int daysInMonth = _clockMonth == 2 ? 28 + (_clockYear % 4 == 0 ? 1 : 0) : 31 - (_clockMonth - 1) % 7 % 2;
     _clockSecs++;
-    _longCount+=1;
+    _longCount += 1;
     frequencyType type = second;
 
     if (_clockSecs == 60) {
@@ -159,7 +158,7 @@ unsigned long epochSecs() {
 }
 
 void initTimer() {
-    _longCount=0;
+    _longCount = 0;
     _clockYear = readByteFromEEPROM(EPROM_YEAR);
     _clockMonth = readByteFromEEPROM(EPROM_MONTH);
     _clockDay = readByteFromEEPROM(EPROM_DAY);

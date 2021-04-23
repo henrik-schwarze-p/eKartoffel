@@ -32,6 +32,19 @@ void analogWrite(uint8_t pin, int value) {
 void pinMode(uint8_t pin, uint8_t mode) {
 }
 
+unsigned long _micros = 0;
+
+unsigned long micros() {
+    _micros += 10;
+    return _micros;
+}
+
+void delay(unsigned long d) {
+}
+
+void delayMicroseconds(unsigned long d) {
+}
+
 unsigned int millis() {
     return SDL_GetTicks() * VELOCITY;
 }

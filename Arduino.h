@@ -22,11 +22,14 @@
 
 #include <stdint.h>
 
-int          analogRead(uint8_t p);
-int          digitalRead(uint8_t pin);
-void         pinMode(uint8_t pin, uint8_t mode);
-unsigned int millis();
-void         digitalWrite(uint8_t pin, uint8_t value);
-void         analogWrite(uint8_t pin, int value);
+int           analogRead(uint8_t p);
+int           digitalRead(uint8_t pin);
+void          pinMode(uint8_t pin, uint8_t mode);
+unsigned int  millis();
+void          digitalWrite(uint8_t pin, uint8_t value);
+void          analogWrite(uint8_t pin, int value);
+unsigned long micros();
+void          delay(unsigned long);
+void          delayMicroseconds(unsigned long d);
 
 #endif /* Arduino_h */
