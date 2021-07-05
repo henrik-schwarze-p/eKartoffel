@@ -18,6 +18,7 @@
 #define LOW 0
 #define INPUT 1
 #define OUTPUT 1
+#define INPUT_PULLUP 2
 #define PROGMEM
 
 #include <stdint.h>

@@ -109,7 +109,7 @@ void mregister(float* a) {
 }
 
 void mregister(float* a, int n) {
-    // mgregister(a, 4 * n);
+    mgregister(a, 4 * n);
 }
 
 void mregister(long* a) {
