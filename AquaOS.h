@@ -9,9 +9,11 @@
 #ifndef AquaOS_h
 #define AquaOS_h
 
+
 #include "Namespaces.h"
 #include "App.h"
 #include "Arduino.h"
+#include "Wire.h"
 #include "BoardLib.h"
 #include "Chunks.h"
 #include "Descriptors.h"
