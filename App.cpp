@@ -16,6 +16,7 @@ void setup() {
     initScheduler();
     initBoard();
     tftReset();
+    fatalError(1,1);
     initHeap();
     launchAll();
     initTimer();
