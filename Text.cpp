@@ -610,7 +610,7 @@ void print(int a, int padding) {
 void printTitle() {
     setBigFont();
     setColor(colorWhite);
-    fillRect(22, 0, 250 - 22, 16);
+    fillRect(0, 0, 250, 16);
     setColor(colorDarkGray);
     drawHorizontalLine(0, 16, 320);
     setColor(colorBlack);

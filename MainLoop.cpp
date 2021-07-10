@@ -113,11 +113,12 @@ void showMem(int x, int aHeap) {
 }
 
 void showMem() {
-    setColor(colorWhite);
-    fillRect(0, 0, 22, menuBarHeight);
-    showMem(0, availablePersistantHeap() * (menuBarHeight - 2) / 4096);
-    showMem(4, availableHeap() * (menuBarHeight - 2) / 4096);
-    showMem(8, 1300 * (menuBarHeight - 2) / 4096);
+    /*    setColor(colorWhite);
+        fillRect(0, 0, 22, menuBarHeight);
+        showMem(0, availablePersistantHeap() * (menuBarHeight - 2) / 4096);
+        showMem(4, availableHeap() * (menuBarHeight - 2) / 4096);
+        showMem(8, 1300 * (menuBarHeight - 2) / 4096);
+     */
 }
 
 int currentLoad() {

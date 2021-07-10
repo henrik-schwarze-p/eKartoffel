@@ -28,6 +28,7 @@ int iconHeight(int iconNumber) {
 }
 
 void drawIcon(int iconNumber, int x, int y) {
+    /*
     int w = (int)icon(iconNumber, 0);
     int h = (int)icon(iconNumber, 1);
     int index = 2;
@@ -47,6 +48,21 @@ void drawIcon(int iconNumber, int x, int y) {
                     drawHorizontalLine(i, j, reps);
             }
             i += reps;
+        }
+    }
+    */
+    int w = (int)icon(iconNumber, 0);
+    int h = (int)icon(iconNumber, 1);
+    int index = 2;
+    for (int j = y; j < h + y; j++) {
+        // int count = w;
+        for (int i = x; i < x + w; i++) {
+            int col = (int)icon(iconNumber, index);
+            if (col!=0) {
+                setColor(col);
+                drawPixel(i, j);
+            }
+            index += 1;
         }
     }
 }
