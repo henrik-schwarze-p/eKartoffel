@@ -19,12 +19,12 @@ const char* pstrSource;
 int         eepromSource;
 char        ramSource[20];
 
-int drawMargin = 0;
-int currentFont = standardFont;
-int textIsBold = 0;
-int textLineHeight = 16;  // just for the small font
-int eating;
-
+int  drawMargin = 0;
+int  currentFont = standardFont;
+int  textIsBold = 0;
+int  textLineHeight = 16;  // just for the small font
+int  eating;
+int  scale = 1;
 char firstOfManyDefinition = 0;
 
 int textPrintX = 0;
@@ -158,16 +158,32 @@ int basicDrawChar(int a, int x, int y) {
         fatalError(26, a);
     int fh = fontHeight() + 1;
     int width = charWidth(a);
-    if (a != 32)
-        for (int i = 1; i < fh; i++) {
-            int b = bigFontData(a * fh + i);
-            for (int j = 0; j < width; j++) {
-                if (b % 2 == 1)
-                    drawPixel(j + x, y + i);
-                b = b / 2;
+    if (a != 32) {
+        if (scale == 1)
+            for (int i = 1; i < fh; i++) {
+                int b = bigFontData(a * fh + i);
+                for (int j = 0; j < width; j++) {
+                    if (b % 2 == 1)
+                        drawPixel(j + x, y + i);
+                    b = b / 2;
+                }
             }
-        }
-    return width;
+        else
+            for (int i = 1; i < fh; i++) {
+                int b = bigFontData(a * fh + i);
+                for (int j = 0; j < width; j++) {
+                    if (b % 2 == 1) {
+                        fillRect(j * scale + x, i * scale + y, scale, scale);
+                    }
+                    b = b / 2;
+                }
+            }
+    }
+    return width * scale;
+}
+
+void setScale(int s) {
+    scale = s;
 }
 
 int bgc = colorBlue;

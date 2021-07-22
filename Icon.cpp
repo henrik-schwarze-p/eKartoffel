@@ -58,7 +58,7 @@ void drawIcon(int iconNumber, int x, int y) {
         // int count = w;
         for (int i = x; i < x + w; i++) {
             int col = (int)icon(iconNumber, index);
-            if (col!=0) {
+            if (col != 0) {
                 setColor(col);
                 drawPixel(i, j);
             }

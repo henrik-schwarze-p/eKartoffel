@@ -333,7 +333,7 @@ namespace aqualog {
         }
         toolbarAdd(standard, 1 > 0, MINI_ICON_UP, up);
         toolbarAdd(MINI_ICON_DOWN, down);
-        toolbarAdd(PSTR("<<"), home);
+        toolbarAddBack(home);
     }
 
 }

@@ -108,5 +108,6 @@ void setPrintModeRamSource();
 void setPrintModePSTR();
 void setPrintModeEEPROM(int offset);
 void drawStringWithIntSubscript(int ox, int y, int width, int suffix);
+void setScale(int s);
 
 #endif /* TextLib_h */

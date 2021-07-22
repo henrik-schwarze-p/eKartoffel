@@ -258,14 +258,14 @@ namespace rules {
             else
                 toolbarAdd(PSTR("Edit"), setToolbarSet, 1);
             toolbarAdd(mini, isenabled, MINI_ICON_DOWN, down);
-            toolbarAdd(mini, isenabled, PSTR("<<"), leave);
+            toolbarAddBack(leave);
         } else if (toolbarSet == 1) {
             toolbarAdd(mini, numberOfAxons() > 0, MINI_ICON_GARBAGE, setToolbarSet, 3);
             toolbarAdd(mini, isenabled, MINI_ICON_ADD, setToolbarSet, 4);
             toolbarAdd(mini, isenabled, PSTR("|"), changeAxon);
             int hasParameters = axon.numberOfParams;
             toolbarAdd(standard, hasParameters, PSTR("Values"), setToolbarSet, 2);
-            toolbarAdd(mini, isenabled, PSTR("<<"), setToolbarSet, 0);
+            toolbarAddBack(setToolbarSet);
         } else if (toolbarSet == 2) {
             for (int i = 0; i < axon.numberOfParams; i++) {
                 const char* s = axon.label;
@@ -273,7 +273,7 @@ namespace rules {
                 int         f2 = toolbarLabelForParameter2(s, i);
                 toolbarAdd(s, changeParameter, i, f1, f2);
             }
-            toolbarAdd(mini, isenabled, PSTR("<<"), setToolbarSet, 0);
+            toolbarAddBack(setToolbarSet);
         } else if (toolbarSet == 3) {
             toolbarAdd(PSTR("    <<    "), setToolbarSet, 1);
             if (axon.isAction)
@@ -284,7 +284,7 @@ namespace rules {
             toolbarAdd(PSTR("\x06 Condition"), newCondition);
             if (selectedAxon)
                 toolbarAdd(PSTR("\x06 Action   "), newAction);
-            toolbarAdd(mini, isenabled, PSTR("<<"), setToolbarSet, 0);
+            toolbarAddBack(setToolbarSet);
         }
     }
 

@@ -321,6 +321,14 @@ void toolbarAddHome() {
     toolbarAdd(mini, 1, MINI_ICON_HOME, desktop::startScreen);
 }
 
+void toolbarAddBack(screen back) {
+    toolbarAdd(mini,1,PSTR("<<"), back);
+}
+
+void toolbarAddBack(command cmd) {
+    toolbarAdd(mini,1,PSTR("<<"), cmd, 0,0,0);
+}
+
 //
 // MESSAGE
 //

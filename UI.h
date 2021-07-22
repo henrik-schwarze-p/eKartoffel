@@ -22,6 +22,8 @@ void toolbarAdd(const char* label, command fn);
 void toolbarAdd(const char* label, screen screen);
 void toolbarAdd(toolbarButtonSize mini, int isEnabled, const char* label, command fn, int param, int first, int last);
 void toolbarAdd(const char* label, command fn, int param, int f1, int f2);
+void toolbarAddBack(screen back);
+void toolbarAddBack(command cmd);
 
 void addLabel(int x, int y, const char* _label, int width, int height, int color, int style, int suffix);
 void addLabel(int x, int y, int instance, int handle, int width, int height, int color, int style, int suffix);

@@ -20,8 +20,6 @@
 #include "Arduino.h"
 #include "Rules.h"
 
-
-
 #include "EepromConf.inc.h"
 
 unsigned char readConf(int a) {
