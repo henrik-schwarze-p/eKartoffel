@@ -322,11 +322,11 @@ void toolbarAddHome() {
 }
 
 void toolbarAddBack(screen back) {
-    toolbarAdd(mini,1,PSTR("<<"), back);
+    toolbarAdd(mini, 1, PSTR("<<"), back);
 }
 
 void toolbarAddBack(command cmd) {
-    toolbarAdd(mini,1,PSTR("<<"), cmd, 0,0,0);
+    toolbarAdd(mini, 1, PSTR("<<"), cmd, 0, 0, 0);
 }
 
 //
