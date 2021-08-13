@@ -19,6 +19,7 @@ namespace numpad {
     int         numPadXVisor = margin;
     int         numPadYVisor = menuBarHeight + margin;
     int         numPadHVisor = 155 - 2 * margin;
+    int         clear = 0;
     float       min;
     float       max;
     char        value[10];
@@ -46,6 +47,11 @@ namespace numpad {
     }
 
     void pressed(int param) {
+        if (clear) {
+            value[0] = 0;
+            counter = 0;
+        }
+        clear = 0;
         if (param == 10) {
             if (counter == 1 && value[0] == 0)
                 return;
@@ -67,6 +73,8 @@ namespace numpad {
             if (counter == 1 && value[0] == 0)
                 counter--;
             value[counter++] = param + 1;
+            if (param == -1)
+                clear = 1;
         }
         drawVisor();
     }

@@ -82,6 +82,7 @@ screen currentScreen();
 void   drawDebugButtonRect(Button b);
 void   toolbarAddHome();
 void   cleanMiddle();
+void   appIconWithText(const char* text);
 
 typedef struct StructToolbarButton {
     command       action;

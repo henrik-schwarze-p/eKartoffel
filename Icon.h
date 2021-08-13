@@ -9,9 +9,16 @@
 #ifndef CoreIcon_h
 #define CoreIcon_h
 
+#define ICON_NOT_CONFIGURED NUMBER_OF_DESCRIPTORS
+#define ICON_ON NUMBER_OF_DESCRIPTORS + 1
+#define ICON_OFF NUMBER_OF_DESCRIPTORS + 2
+
 void drawIcon(int iconNumber, int x, int y);
 int  iconWidth(int iconNumber);
 int  iconHeight(int iconNumber);
+void drawIconNotConfigured(int x, int y);
+void drawIconOn(int x, int y);
+void drawIconOff(int x, int y);
 
 #include "Icons3.inc.h"
 

@@ -109,5 +109,6 @@ void setPrintModePSTR();
 void setPrintModeEEPROM(int offset);
 void drawStringWithIntSubscript(int ox, int y, int width, int suffix);
 void setScale(int s);
+int  hasSpaces(const char* l);
 
 #endif /* TextLib_h */

@@ -13,6 +13,7 @@
 #include "Icons.h"
 #include "Drawing.h"
 
+#include "NumberOfDescriptors.inc.h"
 #include "Icons4.inc.h"
 
 const int icon(int number, int i) {
@@ -28,32 +29,10 @@ int iconHeight(int iconNumber) {
 }
 
 void drawIcon(int iconNumber, int x, int y) {
-    /*
     int w = (int)icon(iconNumber, 0);
     int h = (int)icon(iconNumber, 1);
     int index = 2;
-    for (int j = y; j < h + y; j++) {
-        int i = x;
-        int count = w;
-        while (count > 0) {
-            int          reps = (int)icon(iconNumber, index);
-            unsigned int c = icon(iconNumber, index + 1);
-            index += 2;
-            count -= reps;
-            if (c != 0) {
-                setColor((int)c);
-                if (reps == 1)
-                    drawPixel(i, j);
-                else
-                    drawHorizontalLine(i, j, reps);
-            }
-            i += reps;
-        }
-    }
-    */
-    int w = (int)icon(iconNumber, 0);
-    int h = (int)icon(iconNumber, 1);
-    int index = 2;
+    pushColor();
     for (int j = y; j < h + y; j++) {
         // int count = w;
         for (int i = x; i < x + w; i++) {
@@ -65,4 +44,5 @@ void drawIcon(int iconNumber, int x, int y) {
             index += 1;
         }
     }
+    popColor();
 }

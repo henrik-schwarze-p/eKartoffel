@@ -125,9 +125,9 @@ void addLabel(int x, int y, const char* _label, int width, int height, int color
     if (style & STYLE_BOLD)
         setBoldStyle();
     setColor(color);
-    if (stringWidth(_label) > width)
+    if (stringWidth(_label) > width && hasSpaces(_label)) {
         drawStringWithIntSubscript(_label, x, y + height / 2 - fontHeight() - 2, width, suffix);
-    else {
+    } else {
         drawString(_label, x + extra, y + height / 2 - fontHeight() / 2);
         if (suffix)
             drawInt(suffix, x + extra + stringWidth(_label), y + height / 2 - fontHeight() / 2 + 5);
@@ -149,9 +149,9 @@ void addLabel(int x, int y, int instance, int handle, int width, int height, int
     if (style & STYLE_BOLD)
         setBoldStyle();
     setColor(color);
-    if (strWidth > width)
+    if (strWidth > width) {
         drawStringWithIntSubscript(x, y + height / 2 - fontHeight() - 2, width, suffix);
-    else {
+    } else {
         drawString(x + extra, y + height / 2 - fontHeight() / 2);
         if (suffix)
             drawInt(suffix, x + extra + strWidth, y + height / 2 - fontHeight() / 2 + 5);
@@ -436,4 +436,11 @@ int currentScreenIs(screen s) {
 screen currentScreen() {
     return _currentScreen;
 }
+
+void appIconWithText(const char* text) {
+    drawIcon(getForegroundInstance(), 2 * margin, printY());
+    setMargins(iconWidth(getForegroundInstance()) + 4 * margin, margin);
+    println(text);
+}
+
 // 425 397

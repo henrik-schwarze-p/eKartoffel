@@ -365,6 +365,18 @@ void drawString(int x, int y, int from, int end) {
     }
 }
 
+int hasSpaces(const char* l) {
+    unsigned char c = charAtIndex(0);
+    int           i = 0;
+    while (c) {
+        if (c == ' ')
+            return 1;
+        i++;
+        c = charAtIndex(i);
+    }
+    return 0;
+}
+
 void drawStringWithIntSubscript(int ox, int y, int width, int subscript) {
     int x = ox;
     int i = 0;
