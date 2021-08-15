@@ -6,7 +6,6 @@
 //  Copyright © 2019 Synium. All rights reserved.
 //
 
-#include <stdio.h>
 #include "BoardLib.h"
 
 #include <SDL2/SDL.h>
