@@ -16,7 +16,7 @@ extern long loadTotalDuration;
 unsigned long callCounter = 0;
 unsigned long lastMillis = 0;
 
-int durations;
+long durations;
 
 int _justOpened = 1;
 
@@ -69,7 +69,7 @@ void schedule() {
         }
     }
     _justOpened = 0;
-    durations = ourMillis() - begin;
+    durations = (durations * 9 + ourMillis() - begin)/10;
 }
 
 unsigned int ourMillis() {
@@ -121,5 +121,5 @@ void showMem() {
 }
 
 int currentLoad() {
-    return durations/10;
+    return (int)(durations/10);
 }

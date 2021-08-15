@@ -83,6 +83,7 @@ void   drawDebugButtonRect(Button b);
 void   toolbarAddHome();
 void   cleanMiddle();
 void   appIconWithText(const char* text);
+void appIconWithText();
 
 typedef struct StructToolbarButton {
     command       action;

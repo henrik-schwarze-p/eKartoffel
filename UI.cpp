@@ -443,4 +443,8 @@ void appIconWithText(const char* text) {
     println(text);
 }
 
+void appIconWithText() {
+    appIconWithText(PSTR(""));
+}
+
 // 425 397
