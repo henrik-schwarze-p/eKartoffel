@@ -72,4 +72,8 @@ int colorFromRGB(int r, int g, int b);
 
 void drawBar(int y, int h);
 
+void activateGraphics();
+void deactivateGraphics();
+int isActive();
+
 #endif

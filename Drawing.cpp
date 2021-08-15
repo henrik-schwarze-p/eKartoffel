@@ -9,6 +9,22 @@ int clipMaxX = 319;
 int clipMinY = 0;
 int clipMaxY = 239;
 
+int active=1;
+
+// USED TO GIVE THE APPS ACCESS TO THE SCREEN
+
+void activateGraphics() {
+    active=1;
+}
+
+void deactivateGraphics() {
+    active=0;
+}
+
+int isActive()  {
+    return active;
+}
+
 // We use the arduino colorspace internaly, 32 bits externally
 // 5 bits for red
 // 6 bits for green
@@ -25,10 +41,14 @@ void setColor(int c) {
 }
 
 void drawPixel(int x, int y) {
+    if (!isActive())
+        return;
     tftPixel(y, HR - 1 - x, _color);
 }
 
 void drawHorizontalLine(int x, int y, int w) {
+    if (!isActive())
+        return;
     if (y < clipMinY || y > clipMaxY)
         return;
     if (x < clipMinX) {
@@ -42,6 +62,8 @@ void drawHorizontalLine(int x, int y, int w) {
 }
 
 void drawVerticalLine(int x, int y, int w) {
+    if (!isActive())
+        return;
     if (x < clipMinX || x > clipMaxX)
         return;
     if (y < clipMinY) {
@@ -68,6 +90,8 @@ void popClipping() {
 }
 
 void drawLine(int x0, int y0, int x1, int y1) {
+    if (!isActive())
+        return;
     int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
     int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
     int err = (dx > dy ? dx : -dy) / 2, e2;
@@ -88,6 +112,8 @@ void drawLine(int x0, int y0, int x1, int y1) {
 }
 
 void fillRect(int x, int y, int w, int h) {
+    if (!isActive())
+        return;
     if (x < clipMinX) {
         w -= clipMinX - x;
         x = clipMinX;
@@ -122,6 +148,8 @@ int color() {
 }
 
 void drawRect(int x, int y, int w, int h) {
+    if (!isActive())
+        return;
     drawHorizontalLine(x, y, w);
     drawHorizontalLine(x, y + h - 1, w);
     drawVerticalLine(x, y, h);
@@ -129,6 +157,8 @@ void drawRect(int x, int y, int w, int h) {
 }
 
 void drawBar(int y, int h) {
+    if (!isActive())
+        return;
     setColor(colorPink);
     fillRect(0, y, horizontalResolution, h);
     setColor(colorWhite);

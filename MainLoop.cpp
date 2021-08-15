@@ -63,7 +63,11 @@ void schedule() {
             setPrintX(margin);
             setStandardFont();
             setColor(colorBlack);
-            callTimeSlice(i, fg, type, _justOpened);
+            deactivateGraphics();
+            if (fg)
+                activateGraphics();
+            callTimeSlice(i, 1, type, _justOpened);
+            activateGraphics();
         } else {
             fatalError(6, i);
         }
