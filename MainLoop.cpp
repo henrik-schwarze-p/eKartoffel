@@ -16,9 +16,7 @@ extern long loadTotalDuration;
 unsigned long callCounter = 0;
 unsigned long lastMillis = 0;
 
-#define numberOfDurations 20
-int durations[numberOfDurations];
-int durationCounter = 0;
+int durations;
 
 int _justOpened = 1;
 
@@ -27,9 +25,7 @@ void setJustOpened(int s) {
 }
 
 void initScheduler() {
-    for (int i = 0; i < numberOfDurations; i++)
-        durations[i] = 0;
-    durationCounter = 0;
+    durations = 0;
 }
 
 void mainLoop() {
@@ -73,8 +69,8 @@ void schedule() {
         }
     }
     _justOpened = 0;
-    durations[durationCounter] = ourMillis() - begin;
-    durationCounter = (durationCounter + 1) % numberOfDurations;
+    durations = ourMillis() - begin;
+    consoleln(durations);
 }
 
 unsigned int ourMillis() {
@@ -126,8 +122,5 @@ void showMem() {
 }
 
 int currentLoad() {
-    unsigned int sum = 0;
-    for (int i = 0; i < numberOfDurations; i++)
-        sum += durations[i];
-    return sum / (numberOfDurations * 10);
+    return durations/10;
 }
