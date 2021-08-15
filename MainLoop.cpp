@@ -70,7 +70,6 @@ void schedule() {
     }
     _justOpened = 0;
     durations = ourMillis() - begin;
-    consoleln(durations);
 }
 
 unsigned int ourMillis() {
