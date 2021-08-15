@@ -20,5 +20,5 @@ void setup() {
     launchAll();
     initTimer();
     showMem();
-    message(PSTR("Sketches - Zulke & Schwarze"), desktop::startScreen);
+    message(PSTR("Sketches - Zulke & Schwarze 0.7.1"), desktop::startScreen);
 }
