@@ -438,12 +438,14 @@ screen currentScreen() {
 }
 
 void appIconWithText(const char* text) {
-    drawIcon(getForegroundInstance(), 2 * margin, printY()+margin);
+    drawIcon(getForegroundInstance(), 2 * margin, printY() + margin);
     setMargins(iconWidth(getForegroundInstance()) + 4 * margin, margin);
     println(text);
 }
 
-void appIconWithText() {
+
+
+void appIcon() {
     appIconWithText(PSTR(""));
 }
 

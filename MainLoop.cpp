@@ -69,7 +69,7 @@ void schedule() {
         }
     }
     _justOpened = 0;
-    durations = (durations * 9 + ourMillis() - begin)/10;
+    durations = (durations * 9 + ourMillis() - begin) / 10;
 }
 
 unsigned int ourMillis() {
@@ -121,5 +121,5 @@ void showMem() {
 }
 
 int currentLoad() {
-    return (int)(durations/10);
+    return (int)(durations / 10);
 }

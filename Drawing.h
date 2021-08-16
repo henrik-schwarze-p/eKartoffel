@@ -74,6 +74,6 @@ void drawBar(int y, int h);
 
 void activateGraphics();
 void deactivateGraphics();
-int isActive();
+int  isActive();
 
 #endif

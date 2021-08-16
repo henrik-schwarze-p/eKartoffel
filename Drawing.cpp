@@ -9,19 +9,19 @@ int clipMaxX = 319;
 int clipMinY = 0;
 int clipMaxY = 239;
 
-int active=1;
+int active = 1;
 
 // USED TO GIVE THE APPS ACCESS TO THE SCREEN
 
 void activateGraphics() {
-    active=1;
+    active = 1;
 }
 
 void deactivateGraphics() {
-    active=0;
+    active = 0;
 }
 
-int isActive()  {
+int isActive() {
     return active;
 }
 

@@ -39,7 +39,6 @@ unsigned long micros() {
 }
 
 void delay(unsigned long d) {
-
 }
 
 void delayMicroseconds(unsigned long d) {

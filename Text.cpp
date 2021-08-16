@@ -503,7 +503,7 @@ int drawWord(int i) {
     unsigned char c = charAtIndex(i);
     while (c && c != ' ' && c != '\n') {
         if (charWidth(c) + textPrintX < maxPrintX)
-            textPrintX += drawChar(c, textPrintX, textPrintY) + characterSeparation;
+            textPrintX += drawChar(c, textPrintX, textPrintY) + characterSeparation * scale;
         ;
         i++;
         c = charAtIndex(i);
@@ -608,7 +608,8 @@ void endDefinitions() {
 // Always two decimals, rounded
 void print(float a) {
     print((int)a);
-    print(PSTR("."));
+    if (scale > 1)
+        print(PSTR("."));
     a += 0.005;
     int n = (a - (int)a) * 100;
     print(n / 10);
@@ -622,7 +623,7 @@ void print(int a) {
         textPrintY += textLineHeight;
     }
     drawInt(a, textPrintX, textPrintY);
-    textPrintX += intWidth(a);
+    textPrintX += intWidth(a) * scale;
 }
 
 void print(int a, int padding) {
