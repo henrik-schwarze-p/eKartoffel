@@ -34,17 +34,17 @@ void drawIcon(int iconNumber, int x, int y) {
     int index = 2;
     pushColor();
     for (int j = y; j < h + y; j++) {
-        int i = 0;
+        unsigned i = 0;
         while (i < w) {
-            int count = icon(iconNumber, index++);
+            unsigned count = icon(iconNumber, index++);
             if (count < 100) {
-                int col = (int)icon(iconNumber, index++);
+                unsigned col = (int)icon(iconNumber, index++);
                 setColor(col);
                 if (col != 0)
                     drawHorizontalLine(x + i, j, count);
                 i += count;
             } else {
-                int col = count;
+                unsigned col = count;
                 setColor(col);
                 drawPixel(x + i, j);
                 i += 1;
