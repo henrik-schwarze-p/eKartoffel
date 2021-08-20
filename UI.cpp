@@ -385,8 +385,9 @@ void message(const char* m, void (*a)(void), int clear) {
 screen _currentScreen = 0;
 
 void cleanMiddle() {
-    setColor(colorBG);
+    pushColor(colorBG);
     fillRect(0, menuBarHeight + 1, horizontalResolution, verticalResolution - menuBarHeight - toolbarHeight - 1);
+    popColor();
 }
 
 void dc(int p) {
@@ -443,10 +444,17 @@ void appIconWithText(const char* text) {
     println(text);
 }
 
-
-
 void appIcon() {
     appIconWithText(PSTR(""));
+}
+
+void onIcon(int isOn) {
+    if (isOn) {
+        drawIcon(ICON_ON, 2 * margin, printY() + margin);
+    } else {
+        drawIcon(ICON_OFF, 2 * margin, printY() + margin);
+    }
+    setMargins(iconWidth(getForegroundInstance()) + 4 * margin, margin);
 }
 
 // 425 397

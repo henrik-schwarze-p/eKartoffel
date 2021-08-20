@@ -84,6 +84,7 @@ void   toolbarAddHome();
 void   cleanMiddle();
 void   appIconWithText(const char* text);
 void   appIcon();
+void   onIcon(int);
 
 typedef struct StructToolbarButton {
     command       action;
