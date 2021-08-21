@@ -608,8 +608,7 @@ void endDefinitions() {
 // Always two decimals, rounded
 void print(float a) {
     print((int)a);
-    if (scale > 1)
-        print(PSTR("."));
+    print(PSTR("."));
     a += 0.005;
     int n = (a - (int)a) * 100;
     print(n / 10);
@@ -655,6 +654,16 @@ void cleanRestOfLine() {
     setColor(colorBG);
     fillRect(printX(), printY(), horizontalResolution, fontHeight());
     popColor();
+}
+
+void cprint(const char* c) {
+    cleanRestOfLine();
+    print(c);
+}
+
+void cprintln(const char* c) {
+    cleanRestOfLine();
+    println(c);
 }
 
 //

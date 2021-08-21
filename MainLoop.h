@@ -24,7 +24,6 @@ void initScheduler();
 
 void         processTouch();
 unsigned int ourMillis();
-void         showMem();
 void         mainLoop();
 void         setJustOpened(int s);
 
@@ -41,4 +40,7 @@ void setClockMins(int);
 void setClockDay(int);
 void setClockMonth(int);
 void setClockYear(int);
+
+void logo();
+
 #endif

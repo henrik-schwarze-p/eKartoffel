@@ -80,6 +80,9 @@ void println(const char* s);
 void print(int);
 void print(int a, int padding);
 
+void cprint(const char* c);
+void cprintln(const char* c);
+
 void printTitle(const char* title);
 void printAlignedRight(const char* s, int x);
 void cleanIntPrint(int a, int extra);

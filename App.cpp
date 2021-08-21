@@ -16,9 +16,9 @@ void setup() {
     initScheduler();
     initBoard();
     tftReset();
+    logo();
     initHeap();
     launchAll();
     initTimer();
-    showMem();
     message(PSTR("Sketches - Zulke & Schwarze 0.7.2"), desktop::startScreen);
 }

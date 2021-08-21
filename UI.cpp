@@ -313,6 +313,14 @@ void toolbarAdd(const char* label, screen screen) {
     toolbarAdd(standard, isenabled, label, screen);
 }
 
+void toolbarAdd(int isEnabled, const char* label, screen screen) {
+    toolbarAdd(standard, isEnabled, label, screen);
+}
+
+void toolbarAdd(int isEnabled, const char* label, command fn) {
+    toolbarAdd(standard, isEnabled, label, fn, ignoreParam);
+}
+
 void toolbarAdd(toolbarButtonSize mini, int isEnabled, const char* label, screen screen) {
     toolbarAdd(mini, isEnabled, label, screen, 0, stringLen(label) - 1);
 }
@@ -449,11 +457,10 @@ void appIcon() {
 }
 
 void onIcon(int isOn) {
-    if (isOn) {
+    if (isOn)
         drawIcon(ICON_ON, 2 * margin, printY() + margin);
-    } else {
+    else
         drawIcon(ICON_OFF, 2 * margin, printY() + margin);
-    }
     setMargins(iconWidth(getForegroundInstance()) + 4 * margin, margin);
 }
 

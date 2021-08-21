@@ -262,7 +262,7 @@ namespace rules {
         } else if (toolbarSet == 1) {
             toolbarAdd(mini, numberOfAxons() > 0, MINI_ICON_GARBAGE, setToolbarSet, 3);
             toolbarAdd(mini, isenabled, MINI_ICON_ADD, setToolbarSet, 4);
-            toolbarAdd(mini, isenabled, PSTR("|"), changeAxon);
+            toolbarAdd(mini, isenabled, PSTR("| "), changeAxon);
             int hasParameters = axon.numberOfParams;
             toolbarAdd(standard, hasParameters, PSTR("Values"), setToolbarSet, 2);
             toolbarAddBack(setToolbarSet);

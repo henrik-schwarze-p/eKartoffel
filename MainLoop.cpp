@@ -8,6 +8,7 @@
 #include "FatalError.h"
 #include "Text.h"
 #include "PMClock.h"
+#include "Icon.h"
 
 extern long loadCumulativeDuration;
 extern long loadTotalDuration;
@@ -44,9 +45,6 @@ void mainLoop() {
 
 void schedule() {
     evalRules();
-
-    if (clockSecs() % 10 == 0)
-        showMem();
 
     int           begin = ourMillis();
     frequencyType type = incrementOneSecond();
@@ -101,23 +99,9 @@ void processTouch() {
     }
 }
 
-void showMem(int x, int aHeap) {
-    setColor(colorBlack);
-    fillRect(margin + x, menuBarHeight - aHeap - 1, 5, aHeap + 1);
-    setColor(colorGreen);
-    if (aHeap < 3)
-        setColor(colorRed);
-    if (aHeap > 0)
-        fillRect(x + margin + 1, menuBarHeight - aHeap, 3, aHeap);
-}
-
-void showMem() {
-    /*    setColor(colorWhite);
-        fillRect(0, 0, 22, menuBarHeight);
-        showMem(0, availablePersistantHeap() * (menuBarHeight - 2) / 4096);
-        showMem(4, availableHeap() * (menuBarHeight - 2) / 4096);
-        showMem(8, 1300 * (menuBarHeight - 2) / 4096);
-     */
+void logo() {
+    for (int i = 0; i < NUMBER_OF_DESCRIPTORS; i++)
+        drawIcon(i, i * 320 / NUMBER_OF_DESCRIPTORS, 100);
 }
 
 int currentLoad() {

@@ -122,7 +122,7 @@ namespace keyboard {
         xVisor = stringWidth(message) + 2 * margin;
         widthVisor = horizontalResolution - xVisor - margin;
         drawVisor();
-        toolbarAdd(mini, isenabled, PSTR("|Aa"), otherKeyboard);
+        toolbarAdd(mini, isenabled, PSTR("| Aa"), otherKeyboard);
         toolbarAdd(PSTR("   Set   "), enter);
         toolbarAdd(PSTR("Cancel"), cancel);
     }

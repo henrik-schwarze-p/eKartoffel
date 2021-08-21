@@ -13,6 +13,9 @@ void fatalError(int code, int extraInfo) {
     setColor(colorRed);
     println(PSTR("FATAL ERROR"));
     setColor(colorWhite);
+    if (code == 20) {
+        println(PSTR("Added toolbar code outside screen code"));
+    }
     print(PSTR("  Code: "));
     println(code);
     print(PSTR("  Active instance: "));
