@@ -229,6 +229,18 @@ int intWidth(int a) {
     return result;
 }
 
+int longWidth(unsigned long a) {
+    int result = 0;
+    while (1) {
+        int remainder = a % 10;
+        result += charWidth(remainder + 48) + characterSeparation;
+        a /= 10;
+        if (a == 0)
+            break;
+    }
+    return result;
+}
+
 int intWidth(int a, int padding) {
     int result = 0;
     int z = 0;
@@ -478,6 +490,25 @@ void drawInt(int n, int x, int y) {
     }
 }
 
+void drawLong(unsigned long n, int x, int y) {
+    long reversedNumber = 0, remainder;
+    int  c = 0;
+    while (n != 0) {
+        remainder = n % 10;
+        reversedNumber = reversedNumber * 10 + remainder;
+        n /= 10;
+        c += 1;
+    }
+    if (c == 0)
+        c = 1;
+    while (c > 0) {
+        int delta = drawChar((reversedNumber % 10) + 48, x, y) + characterSeparation;
+        x += delta;
+        reversedNumber /= 10;
+        c--;
+    }
+}
+
 void drawInt(int n, int x, int y, int padding) {
     int reversedNumber = 0, remainder;
     int c = 0;
@@ -570,6 +601,16 @@ void println(int n) {
     println();
 }
 
+void println(unsigned int n) {
+    print(n);
+    println();
+}
+
+void println(unsigned long n) {
+    print(n);
+    println();
+}
+
 void println(float n) {
     print(n);
     println();
@@ -623,6 +664,16 @@ void print(int a) {
     }
     drawInt(a, textPrintX, textPrintY);
     textPrintX += intWidth(a) * scale;
+}
+
+void print(unsigned long a) {
+    int z = longWidth(a);
+    if (textPrintX + z > maxPrintX) {
+        textPrintX = minPrintX;
+        textPrintY += textLineHeight;
+    }
+    drawLong(a, textPrintX, textPrintY);
+    textPrintX += longWidth(a) * scale;
 }
 
 void print(int a, int padding) {

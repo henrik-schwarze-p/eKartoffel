@@ -78,7 +78,11 @@ void drawCenteredString(const char* s);
 void print(const char* s);
 void println(const char* s);
 void print(int);
+void print(unsigned long a);
+
 void print(int a, int padding);
+void println(unsigned int n);
+void println(unsigned long n);
 
 void cprint(const char* c);
 void cprintln(const char* c);
