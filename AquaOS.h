@@ -39,6 +39,8 @@
 #include "UISelect.h"
 #include "UI.h"
 #include "Launcher.h"
+#include "RCSwitch.h"
+#include "Resources.h"
 
 #endif
 

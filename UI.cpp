@@ -446,14 +446,9 @@ screen currentScreen() {
     return _currentScreen;
 }
 
-void appIconWithText(const char* text) {
-    drawIcon(getForegroundInstance(), 2 * margin, printY() + margin);
-    setMargins(iconWidth(getForegroundInstance()) + 4 * margin, margin);
-    println(text);
-}
-
 void appIcon() {
-    appIconWithText(PSTR(""));
+    drawIcon(getForegroundInstance(),  margin + 21 - iconWidth(getForegroundInstance())/2, printY() + margin);
+    setMargins(42 +  3*margin, margin);
 }
 
 void onIcon(int isOn) {
