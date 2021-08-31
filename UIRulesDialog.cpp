@@ -166,7 +166,7 @@ namespace rules {
     }
 
     // runs in app space
-    void analogValueCont(int valid, float value) {
+    void analogValueCont(int valid, long value) {
         if (valid) {
             Axon axon = axonForIndex(selectedAxon);
             axon.params[activeIndex] = value;
@@ -197,8 +197,8 @@ namespace rules {
         if (toolbarIntForParameter(axon.label, paramIndex, PSTR("Port")))
             showDigitalPortDialog(value, portsCont);
         else if (toolbarIntForParameter(axon.label, paramIndex, PSTR("An. Value")))
-            showNumPad(PSTR("Enter the value for the Analog Port. It must be inside the range [0,1023]."), (float)value,
-                       0.0, 1023.0, analogValueCont, 0);
+            showNumPad(PSTR("Enter the value for the Analog Port. It must be inside the range [0,1023]."), value,
+                       0, 1023, analogValueCont);
         else if (axon.isAction) {
             callGeneratedSetActionParameter(axon.instance, axon.kind, paramIndex);
             // pico

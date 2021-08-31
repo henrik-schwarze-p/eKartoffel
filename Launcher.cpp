@@ -27,7 +27,6 @@ unsigned char readConf(int a) {
 }
 
 void launchAll() {
-    boardPrintln("Build b01.");
     boardPrintln("Launching...");
 
     for (int i = 0; i < MAX_NUMBER_OF_INSTANCES; i++)

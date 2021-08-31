@@ -9,11 +9,17 @@
 #ifndef CoreUI_NumPad_h
 #define CoreUI_NumPad_h
 
-void showNumPad(const char* message,
+void showFloatNumPad(const char* message,
                 float       initialValue,
                 float       min,
                 float       max,
-                void (*callback)(int, float),
-                int allowFloat);
+                void (*callback)(int, float));
+
+void showNumPad(const char* message,
+                long       initialValue,
+                 long       min,
+                 long       max,
+                void (*callback)(int, long));
+
 
 #endif /* CoreUI_NumPad_h */
