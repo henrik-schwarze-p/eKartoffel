@@ -30,6 +30,7 @@
 */
 
 #include "RCSwitch.h"
+#include "BoardLib.h"
 
 #ifdef RaspberryPi
     // PROGMEM and _P functions are for AVR based microprocessors,
@@ -489,6 +490,8 @@ void RCSwitch::send(const char* sCodeWord) {
  * then the bit at position length-2, and so on, till finally the bit at position 0.
  */
 void RCSwitch::send(unsigned long code, unsigned int length) {
+    boardPrint("Sending");
+    boardPrintln((int)code);
   if (this->nTransmitterPin == -1)
     return;
 

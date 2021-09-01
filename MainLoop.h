@@ -41,6 +41,4 @@ void setClockDay(int);
 void setClockMonth(int);
 void setClockYear(int);
 
-void logo();
-
 #endif

@@ -16,9 +16,8 @@ void setup() {
     initScheduler();
     initBoard();
     tftReset();
-    logo();
     initHeap();
     launchAll();
     initTimer();
-    message(PSTR("Sketches - Zulke & Schwarze 0.7.2"), desktop::startScreen);
+    message(PSTR("Sketches - Schwarzulke Sep.01.2021-1"), desktop::startScreen);
 }

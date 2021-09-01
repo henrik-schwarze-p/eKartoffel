@@ -99,10 +99,6 @@ void processTouch() {
     }
 }
 
-void logo() {
-    for (int i = 0; i < NUMBER_OF_DESCRIPTORS; i++)
-        drawIcon(i, i * 320 / NUMBER_OF_DESCRIPTORS, 100);
-}
 
 int currentLoad() {
     return (int)(durations / 10);
