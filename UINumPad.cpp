@@ -23,8 +23,8 @@ namespace floatnumpad {
     float       max;
     char        value[10];
     int         counter = 0;
-    int         tooSmall = 0;
-    int         tooBig = 0;
+    float         tooSmall = 0;
+    float         tooBig = 0;
     const char* numPadMsg;
     void (*numPadCallback)(int, float);
 
@@ -221,8 +221,8 @@ namespace numpad {
     long       max;
     char        value[10];
     int         counter = 0;
-    int         tooSmall = 0;
-    int         tooBig = 0;
+    long         tooSmall = 0;
+    long         tooBig = 0;
     const char* numPadMsg;
     void (*numPadCallback)(int, long);
 
