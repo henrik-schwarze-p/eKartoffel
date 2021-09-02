@@ -189,7 +189,6 @@ void toolbarClicked(int param) {
         ToolbarButton button = toolbarButtons[i];
         accX += button.width;
         if (x < accX) {
-            setColor(colorRed);
             int x1 = accX-button.width+1;
             int y1 =  verticalResolution-toolbarHeight;
             int w = button.width-1;
@@ -201,11 +200,15 @@ void toolbarClicked(int param) {
             } else if (i==toolbarCount-1) {
                 w= 320-accX+button.width-1;
             }
+            for (int anim=0;anim<3;anim++) {
+            setColor(colorRed);
+
             for (int d=0;d<3;d++)
             drawRect(x1+d, y1+d, w-2*d, h-2*d);
             setColor(colorToolbar);
             for (int d=0;d<3;d++)
             drawRect(x1+d, y1+d, w-2*d, h-2*d);
+            }
 
             if (button.enabled) {
                 if (button.action) {
