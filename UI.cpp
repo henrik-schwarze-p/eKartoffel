@@ -200,11 +200,14 @@ void toolbarClicked(int param) {
             } else if (i==toolbarCount-1) {
                 w= 320-accX+button.width-1;
             }
-            for (int anim=0;anim<3;anim++) {
+            for (int anim=0;anim<5;anim++) {
                 setColor(colorWhite);
                 for (int d=0;d<3;d++)
                     drawRect(x1+d, y1+d, w-2*d, h-2*d);
+                if (anim==4)
                 setColor(colorToolbar);
+                else
+                    setColor(colorBlack);
                     for (int d=0;d<3;d++)
                 drawRect(x1+d, y1+d, w-2*d, h-2*d);
             }
