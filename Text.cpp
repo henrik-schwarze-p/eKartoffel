@@ -703,7 +703,7 @@ void printTitle() {
 void cleanRestOfLine() {
     pushColor();
     setColor(colorBG);
-    fillRect(printX(), printY(), horizontalResolution, fontHeight());
+    fillRect(printX(), printY(), horizontalResolution, fontHeight()+1);
     popColor();
 }
 

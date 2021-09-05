@@ -23,6 +23,7 @@ namespace admin {
 }
 namespace desktop {
     void startScreen(void);
+    void sca(int);
 }
 
 namespace pm {

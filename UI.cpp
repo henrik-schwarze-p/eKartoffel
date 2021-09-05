@@ -208,8 +208,8 @@ void toolbarClicked(int param) {
                 setColor(colorToolbar);
                 else
                     setColor(colorBlack);
-                    for (int d=0;d<3;d++)
-                drawRect(x1+d, y1+d, w-2*d, h-2*d);
+                for (int d=0;d<3;d++)
+                    drawRect(x1+d, y1+d, w-2*d, h-2*d);
             }
 
             if (button.enabled) {
@@ -470,7 +470,13 @@ screen currentScreen() {
 }
 
 void appIcon() {
-    drawIcon(getForegroundInstance(),  margin + 21 - iconWidth(getForegroundInstance())/2, printY() + margin);
+    
+    uint16_t id = idForInstance(getForegroundInstance());
+    int      icon = getDescriptorIndex(id);
+    
+    
+    //int icon=idForInstance(getForegroundInstance());
+    drawIcon(icon,  margin + 21 - iconWidth(getForegroundInstance())/2, printY() + margin);
     setMargins(42 +  3*margin, margin);
 }
 

@@ -29,6 +29,8 @@ int iconHeight(int iconNumber) {
 }
 
 void drawIcon(int iconNumber, int x, int y) {
+    if (!isActive())
+        return;
     int w = (int)icon(iconNumber, 0);
     int h = (int)icon(iconNumber, 1);
     int index = 2;
