@@ -23,8 +23,8 @@ namespace floatnumpad {
     float       max;
     char        value[10];
     int         counter = 0;
-    float         tooSmall = 0;
-    float         tooBig = 0;
+    float       tooSmall = 0;
+    float       tooBig = 0;
     const char* numPadMsg;
     void (*numPadCallback)(int, float);
 
@@ -209,7 +209,6 @@ namespace floatnumpad {
     }
 }
 
-
 namespace numpad {
     int         numPadW = 50;
     int         numPadH = 40;
@@ -217,12 +216,12 @@ namespace numpad {
     int         numPadYVisor = menuBarHeight + margin;
     int         numPadHVisor = 155 - 2 * margin;
     int         clear = 0;
-    long       min;
-    long       max;
+    long        min;
+    long        max;
     char        value[10];
     int         counter = 0;
-    long         tooSmall = 0;
-    long         tooBig = 0;
+    long        tooSmall = 0;
+    long        tooBig = 0;
     const char* numPadMsg;
     void (*numPadCallback)(int, long);
 
@@ -236,7 +235,7 @@ namespace numpad {
         setBigFont();
         setColor(colorGreen);
         for (int i = 0; i < counter; i++) {
-                print(value[i]);
+            print(value[i]);
         }
     }
 
@@ -272,7 +271,7 @@ namespace numpad {
 
     long toLong() {
         long r = 0;
-        int   i = 0;
+        int  i = 0;
         while (i < counter) {
             r = r * 10 + value[i];
             i++;
@@ -386,12 +385,7 @@ namespace numpad {
     }
 }
 
-
-void showFloatNumPad(const char* message,
-                float       initialValue,
-                float       min,
-                float       max,
-                void (*callback)(int, float)) {
+void showFloatNumPad(const char* message, float initialValue, float min, float max, void (*callback)(int, float)) {
     floatnumpad::tooSmall = 0;
     floatnumpad::tooBig = 0;
     floatnumpad::min = min;
@@ -404,11 +398,7 @@ void showFloatNumPad(const char* message,
     goToScreen(floatnumpad::showNumPad);
 }
 
-void showNumPad(const char* message,
-                long       initialValue,
-                long       min,
-                long       max,
-                void (*callback)(int, long)) {
+void showNumPad(const char* message, long initialValue, long min, long max, void (*callback)(int, long)) {
     numpad::tooSmall = 0;
     numpad::tooBig = 0;
     numpad::min = min;

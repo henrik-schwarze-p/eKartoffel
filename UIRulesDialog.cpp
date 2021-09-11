@@ -197,8 +197,8 @@ namespace rules {
         if (toolbarIntForParameter(axon.label, paramIndex, PSTR("Port")))
             showDigitalPortDialog(value, portsCont);
         else if (toolbarIntForParameter(axon.label, paramIndex, PSTR("An. Value")))
-            showNumPad(PSTR("Enter the value for the Analog Port. It must be inside the range [0,1023]."), value,
-                       0, 1023, analogValueCont);
+            showNumPad(PSTR("Enter the value for the Analog Port. It must be inside the range [0,1023]."), value, 0,
+                       1023, analogValueCont);
         else if (axon.isAction) {
             callGeneratedSetActionParameter(axon.instance, axon.kind, paramIndex);
             // pico

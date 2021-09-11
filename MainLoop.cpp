@@ -99,7 +99,6 @@ void processTouch() {
     }
 }
 
-
 int currentLoad() {
     return (int)(durations / 10);
 }

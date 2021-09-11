@@ -85,6 +85,7 @@ void println(unsigned int n);
 void println(unsigned long n);
 
 void cprint(const char* c);
+void cprint(float);
 void cprintln(const char* c);
 
 void printTitle(const char* title);

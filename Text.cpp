@@ -703,13 +703,18 @@ void printTitle() {
 void cleanRestOfLine() {
     pushColor();
     setColor(colorBG);
-    fillRect(printX(), printY(), horizontalResolution, fontHeight()+1);
+    fillRect(printX(), printY(), horizontalResolution, fontHeight() + 1);
     popColor();
 }
 
 void cprint(const char* c) {
     cleanRestOfLine();
     print(c);
+}
+
+void cprint(float f) {
+    cleanRestOfLine();
+    print(f);
 }
 
 void cprintln(const char* c) {

@@ -19,10 +19,11 @@ namespace portDialog {
     int portX[] = {-1, 64, 64 * 2, 64 * 3, 64 * 4, 320};
     int portY[] = {17, 17 + 58 + 1, 17 + 58 + 1 + 59 + 1, 17 + 58 + 1 + 59 + 1 + 59 + 1};
 
-    int digital = 0;
-    int selected = -1;
-    int firstPortShown = 1;
-    int firstTime = 0;
+    int  digital = 0;
+    int  selected = -1;
+    int  firstPortShown = 1;
+    int  firstTime = 0;
+    char currentPort;
 
     void screenDialogPorts(void);
     void (*portCallback)(int);
@@ -32,10 +33,15 @@ namespace portDialog {
     }
 
     const char* getLabelForPort(int p, int digital) {
+        const char* result = 0;
         for (int i = 0; i < numberOfInstances(); i++)
             if (callGetLabelForPort(i, p, digital))
-                return callGetLabelForPort(i, p, digital);
-        return 0;
+                if (result) {
+                    result = PSTR("Many!");
+                } else {
+                    result = callGetLabelForPort(i, p, digital);
+                }
+        return result;
     }
 
     void portSelected(int param) {
@@ -44,10 +50,10 @@ namespace portDialog {
 
     void setSelectedPort(int param) {
         param = param + firstPortShown;
-        if (!getLabelForPort(param, digital)) {
-            selected = param;
-            goToScreen(screenDialogPorts, 0);
-        }
+        // if (!getLabelForPort(param, digital)) {
+        selected = param;
+        goToScreen(screenDialogPorts, 0);
+        //}
     }
 
     void decMinPort(int param) {
@@ -90,7 +96,10 @@ namespace portDialog {
             if (used) {
                 setColor(colorOrange);
             }
-            if (thePort == selected) {
+            if (thePort == selected && used && selected != currentPort) {
+                setColor(colorRed);
+                fontColor = colorWhite;
+            } else if (thePort == selected) {
                 setColor(colorWhite);
                 fontColor = colorBlack;
             }
@@ -117,7 +126,11 @@ namespace portDialog {
         addButton(0, menuBarHeight, 64, 60, setSelectedPort, 0, 5, 3, 0, 0, -1);
 
         toolbarAdd(mini, firstPortShown > 1, MINI_ICON_LEFT, decMinPort);
-        toolbarAdd(PSTR("  Set  "), portSelected);
+
+        if (selected && getLabelForPort(selected, digital) && selected != currentPort)
+            toolbarAdd(PSTR("Force!"), portSelected);
+        else
+            toolbarAdd(PSTR("  Set  "), portSelected);
         toolbarAdd(PSTR("Cancel"), portCancelled);
         toolbarAdd(mini, firstPortShown + 14 < numberOfPorts(), MINI_ICON_RIGHT, incMinPort);
     }
@@ -129,6 +142,7 @@ void showDigitalPortDialog(int currentPort, void (*callback)(int)) {
     portDialog::selected = currentPort;
     portDialog::portCallback = callback;
     portDialog::firstTime = 2;
+    portDialog::currentPort = currentPort;
     message(PSTR("Please select a digital port and then press 'Set'"), portDialog::screenDialogPorts, 0);
 }
 
@@ -138,5 +152,6 @@ void showAnalogPortDialog(int currentPort, void (*callback)(int)) {
     portDialog::selected = currentPort;
     portDialog::portCallback = callback;
     portDialog::firstTime = 2;
+    portDialog::currentPort = currentPort;
     message(PSTR("Please select an analog port and then press 'Set'"), portDialog::screenDialogPorts, 0);
 }

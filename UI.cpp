@@ -189,27 +189,27 @@ void toolbarClicked(int param) {
         ToolbarButton button = toolbarButtons[i];
         accX += button.width;
         if (x < accX) {
-            int x1 = accX-button.width+1;
-            int y1 =  verticalResolution-toolbarHeight;
-            int w = button.width-1;
+            int x1 = accX - button.width + 1;
+            int y1 = verticalResolution - toolbarHeight;
+            int w = button.width - 1;
             int h = toolbarHeight;
-            
-            if (i==0) {
-                x1=0;
+
+            if (i == 0) {
+                x1 = 0;
                 w++;
-            } else if (i==toolbarCount-1) {
-                w= 320-accX+button.width-1;
+            } else if (i == toolbarCount - 1) {
+                w = 320 - accX + button.width - 1;
             }
-            for (int anim=0;anim<5;anim++) {
+            for (int anim = 0; anim < 5; anim++) {
                 setColor(colorWhite);
-                for (int d=0;d<3;d++)
-                    drawRect(x1+d, y1+d, w-2*d, h-2*d);
-                if (anim==4)
-                setColor(colorToolbar);
+                for (int d = 0; d < 3; d++)
+                    drawRect(x1 + d, y1 + d, w - 2 * d, h - 2 * d);
+                if (anim == 4)
+                    setColor(colorToolbar);
                 else
                     setColor(colorBlack);
-                for (int d=0;d<3;d++)
-                    drawRect(x1+d, y1+d, w-2*d, h-2*d);
+                for (int d = 0; d < 3; d++)
+                    drawRect(x1 + d, y1 + d, w - 2 * d, h - 2 * d);
             }
 
             if (button.enabled) {
@@ -470,14 +470,12 @@ screen currentScreen() {
 }
 
 void appIcon() {
-    
     uint16_t id = idForInstance(getForegroundInstance());
     int      icon = getDescriptorIndex(id);
-    
-    
-    //int icon=idForInstance(getForegroundInstance());
-    drawIcon(icon,  margin + 21 - iconWidth(getForegroundInstance())/2, printY() + margin);
-    setMargins(42 +  3*margin, margin);
+
+    // int icon=idForInstance(getForegroundInstance());
+    drawIcon(icon, margin + 21 - iconWidth(getForegroundInstance()) / 2, printY() + margin);
+    setMargins(42 + 3 * margin, margin);
 }
 
 void onIcon(int isOn) {
