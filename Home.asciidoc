@@ -43,7 +43,7 @@ The code is quite simple:
 ----
 #include "AquaOS.h"
 
-namespace hello_world {
+namespace ahello_world {
     void startScreen() { <1>
         drawCenteredString("Hello World!");
         toolbarAddHome(); <2>
