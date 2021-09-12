@@ -1,0 +1,39 @@
+
+
+<p style="float:left;font-weight:bold">Select the Apps to include in your sketch:</p>
+<div style="float:right">
+<input id=searchie type="text" style="width:250px"  placeholder="Filter Apps by Name              ">
+</div>
+<div style="clear:both"/>
+<table id=thetable class='table'>
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr>
+      	<td>
+          <% if !app.core %>
+            <%= check_box_tag "sel_ids[]", app.id, @pack.includes_app(app) %> 
+          <% else %>
+            &#10004;  
+          <% end %>
+        </td>  
+        <td><div><img src=<%=app.icon.url%>></div></td>
+        <td><%= app.name %></td>
+        <td><%= app.description %></td>
+        <td><%= link_to "<i class='fas fa-info'></i>".html_safe, app, class: "toggle_icon" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= submit_tag button_label, class: "last btn btn-success" %>
+
+
+
+    <script src="https://kit.fontawesome.com/6a2d8ae357.js" crossorigin="anonymous"></script>
+
+
+11
+8
+2
+13
