@@ -35,6 +35,9 @@ void setBigFont(void);
 void setNormalStyle(void);
 void setBoldStyle(void);
 
+void pushStyle();
+void popStyle();
+
 int drawChar(int a, int x, int y);
 
 void setPrintX(int x);

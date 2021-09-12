@@ -61,6 +61,7 @@ void schedule() {
             if (fg)
                 activateGraphics();
             callTimeSlice(i, 1, type, _justOpened);
+            setNormalStyle();
             activateGraphics();
         } else {
             fatalError(6, i);

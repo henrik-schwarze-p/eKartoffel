@@ -22,6 +22,7 @@ char        ramSource[20];
 int  drawMargin = 0;
 int  currentFont = standardFont;
 int  textIsBold = 0;
+int  pushedStyle = 0;
 int  textLineHeight = 16;  // just for the small font
 int  eating;
 int  scale = 1;
@@ -135,6 +136,14 @@ void setBigFont() {
 
 void setBoldStyle() {
     textIsBold = 1;
+}
+
+void pushStyle() {
+    pushedStyle = textIsBold;
+}
+
+void popStyle() {
+    textIsBold = pushedStyle;
 }
 
 void setNormalStyle() {

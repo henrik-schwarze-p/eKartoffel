@@ -23,6 +23,7 @@ void pregister(float* a);
 void pregister(long* a);
 void pregister(char* a);
 void pregister(unsigned long* a);
+void pregister(unsigned char* a);
 
 void mregister(int* a);
 void mregister(uint16_t* a);

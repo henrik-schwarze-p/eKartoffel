@@ -260,6 +260,7 @@ void boardTextRepaint() {
     pushClip();
     setMaxPrintX(320 * 3 - margin);
     setStandardFont();
+    setNormalStyle();
 
     pushColor();
     setColor(colorBitDarkerGray);

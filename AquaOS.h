@@ -36,6 +36,7 @@
 #include "UIKeyboard.h"
 #include "UINumPad.h"
 #include "UIPort.h"
+#include "UIRC.h"
 #include "UISelect.h"
 #include "UI.h"
 #include "Launcher.h"

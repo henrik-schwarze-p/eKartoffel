@@ -123,3 +123,7 @@ void mregister(long* a) {
 void mregister(char* a) {
     mgregister(a, 1);
 }
+
+void pregister(unsigned char* a) {
+    pgregister(a, 1);
+}
