@@ -19,5 +19,5 @@ void setup() {
     initHeap();
     launchAll();
     initTimer();
-    message(PSTR("Sketches - Schwarzulke Sep.01.2021-1"), desktop::startScreen);
+    message(PSTR("Sketches - Schwarzulke Sep.12.2021"), desktop::startScreen);
 }
