@@ -27,9 +27,7 @@ endif::[]
 
 toc::[]
 
-== A word about Relais ==
-
-A relais allow you to controll components that use a different voltage than your controller. With a relais you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a big mistake using a relais, you are dead. In Sketches, you should you a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
+WARNING: A relais allow you to controll components that use a different voltage than your controller. With a relais you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a big mistake using a relais, you are dead. In Sketches, you should you a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
 
 == A Simple Tutorial
 
