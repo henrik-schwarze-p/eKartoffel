@@ -1,4 +1,4 @@
-= Sketches Documentation
+= Kartoffel Documentation
 ////
 Big ol' comment
 
@@ -27,13 +27,15 @@ endif::[]
 
 toc::[]
 
-WARNING: A relais allow you to controll components that use a different voltage than your controller. With a relais you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a big mistake using a relais, you are dead. In Sketches, you should you a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
+WARNING: A relay is a component that allows you to control higher voltage with your controller. With a relay you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a mistake using a relay, you are dead. In Sketches, you should use a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
 
 == A Simple Tutorial
 
 === Hello World
 
-Lets start with the following Hello World app. All apps in Sketches have 3 regions. An upper bar, where the name of the app is displayed, the amount of EEPROM and RAM memory available, and also the time.
+Lets start with the following Hello World app. 
+
+All apps in Sketches have 3 regions. An upper bar, where the name of the App and the time are displayed, the middle section, where your App should show its state and the toolbar on the bottom.
 
 image::hw.png[]
 
@@ -47,14 +49,15 @@ The code is quite simple:
 
 namespace hello_world {
     void startScreen() { <1>
-        drawCenteredString("Hello World!");
-        toolbarAddHome(); <2>
+        drawCenteredString(PSTR("Hello World!")); <2>
+        toolbarAddHome(); <3>
     }
 }
 ----
 <1> All Sketches apps are written using callbacks, that is, functions that are called when certain functionality has to be performed. The function that is called when a app goes to the 
 foreground is `startScreen`. 
-<2> This function adds a *home* button in the toolbar, when pressed, the application is no longer on the foreground, and the desktop is shown.
+<2> *Very* important: Strings in Sketches always have to be static and stored in the code memory segment. Always use PSTR, if not, the App will crash. 
+<3> This function adds a *home* button in the toolbar, when pressed, the application is no longer on the foreground, and the desktop is shown.
 
 TIP: Apps are always active, not only when they are in the foreground. They get called every second to perform it business logic, but only one app can be on the foreground at a given time. In other words, only one app receives the UI events.
 
@@ -84,19 +87,26 @@ namespace counter {
 }
 ----
 <1> We need the function prototype to help C++ compile.
-<2> The variable we count the number of presses.
-<3> Any function with this signature `void function(int param)` is called a *command* in Sketches. 
-<4> A command can ask a screen to be drawn, using the `goToScreen(screen)` function. In this case, the screen that shows how many presses have been there, is also `startScreen`. 
+<2> The variable to count the number of presses.
+<3> Any function with the signature `void function(int param)` is called a *command* in Sketches. 
+<4> A *command* can ask a screen to be drawn, using the `goToScreen(screen)` function. In this case, the screen that shows how many presses have been there, is also `startScreen`. 
 <5> `startScreen` is called when the app goes to foreground *and* when the count function is invoked.
-<6> Here a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0`. This parameter has no importance. PSTR is important, if missing, Sketches would crash.
+<6> Here, a button with the label "+" is added. If pressed, the function `count` will be called with the parameter `0` (you could also omit the third parameter, 0 is passed by default). In this case, the parameter is not important. PSTR is important, if missing, Sketches will crash.
+
+
+==== Screens
+
+The GUI of an App in Sketche is normaly composed of many "screens". You start at the start screen, and then you can jump to other "screens". For example, one screen can be the main screen, other the configuration and other one view of the state.
+
+Screens are functions that draw a complete UI screen (including the toolbar). This function receive no parameters. To draw a screen using the `screenFn` function, call `goToScreen(screenFn)`. Sketches remembers the "screen" where it currently is. You can use the function `currentScreenIs` to test which screen is being currently shown.
 
 ==== Commands
 
-Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature. Commands can change the screen to another one. For example, a command `configure(int param)` could show a new screen with the calibration info and a toolbar adapted to calibration actions.
+Commands are called when a button is pressed in the toolbar. The *param* parameter is not always used, but must be in the signature. Commands can change the screen . For example, a command `configure(int param)` could show a new screen with the calibration info and a toolbar adapted to calibration actions.
 
 === Persistent Variables
 
-In *A Counter* the variable counter will be reset to 0 everytime the microcontroller is powered off. There is a mechanism in Sketches that will keep the value of a variable in the EEPROM. This is very handy in apps that have a configuration, if this configuration would be deleted every time the microcontroller is disconnected, then it would be a lot of work to reconfigure it every time.
+In the last code example,  the variable counter will be reset to 0 everytime the microcontroller is powered on. There is a mechanism in Sketches that will keep the value of a variable in the EEPROM. This is very handy in apps that have a configuration, and saves the user from a lot of work.
 
 The use of persistant variables is almost transparent. There is no need to access the EEPROM directly, and only 2 functions have to be added, regardless of the amount of variables.
 
@@ -109,7 +119,7 @@ TIP: Persistent variables should not be changed frequently. Plan to change a per
 namespace counter {
     void startScreen();
 
-    int counter=0;
+    int counter;
 
     void whenCreated() { <1>
         counter = 0; <2>
@@ -144,13 +154,15 @@ This function will be called only once in the whole app lifetime. If the microco
 
 ==== registerVars()
 
-This function should only register variables (with `pregister` and `mregister`). This function will be called in the background constantly by Sketches. Don't write any business logic here.
+This function should only register variables (with `pregister` and `mregister`). This function will be called in the background constantly by Sketches to persist variables but also to do context switching. Don't write any business logic here.
 
 === Singleton App Instance
 
 The philosophy of Sketches is that one App should be as simple as possible, and deal only with one hardware component. If you want to handle many similar hardware pieces, you should create many instances of the same App. In objected oriented programming, you would think of an app as the class, and the instances as the objects of that class.
 
 For example, if you have an App that measures the PH of an aquarium, and you would like to measure many aquarium concurrently, then you would be tempted to write code that could manage many analog ports, keep the configuration of each probe, etc. This would make the app difficult to write, difficult to operate, and also unflexible (see Scripting). The preferred approach is to write an app that can handle *one* probe very good, and then create *many* instances of this app, each one of them independent.
+
+==== int cardinality()
 
 If you want Sketches to avoid running more than one instance of one application, you have to implement the `cardinality()` function, returning `APP_CARDINALITY_ALWAYS_ONE` or `APP_CARDINALITY_MAX_ONE`
 
@@ -170,22 +182,20 @@ namespace counter {
 	}
 ----
 
+
 If you return `APP_CARDINALITY_ALWAYS_ONE`, then Sketches will create automatically one instance of the app when first powered on, it won't allow to delete it, nor to add a new instance of it. This is used by many default apps, that always have to be running (like the PortManager, or the Admin app).
 
 On the other hand, if you return `APP_CARDINALITY_MAX_ONE`, you can delete the instance of the app, or create one instance, but not two.
-
-==== int cardinality()
-
-If you want to force it to run at most one instance of an application, you have to declare the function `int cardinality()` and return how many instances you want to allow.
 
 There are three possibilities:
 
 * APP_CARDINALITY_ALWAYS_ONE
 * APP_CARDINALITY_MAX_ONE
+* By deault, multiple instances.
 
 === Multiple Instance Apps
 
-By default, Sketches allows many instances of an app to be run concurrently. This presents a major problem, the declared variables are shared between all the instances. This may be ok sometimes, but normally you want each instance to have its own variable space. Fortunately, the mechanism is almost exactly the same as using persistent variables.
+Sketches allows many instances of an app to be run concurrently. This presents a major problem, the declared variables are shared between all the instances. This may be ok sometimes, but normally you want each instance to have its own variable space. Fortunately, the mechanism is almost exactly the same as using persistent variables.
 
 TIP: Persistent variables are automatically allocated for each instance, and not shared. Only variables that are volatile (in the RAM), have to be registered.
 
@@ -196,7 +206,7 @@ The following is a version where counter can have many instances, and the variab
 #include "AquaOS.h"
 
 namespace counter {
-    int counter=0;
+    int counter;
 
     void whenPowered() { <1>
         counter = 0; <2>
