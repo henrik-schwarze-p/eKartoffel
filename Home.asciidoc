@@ -27,7 +27,7 @@ endif::[]
 
 toc::[]
 
-WARNING: A relay is a component that allows you to control higher voltage with your controller. With a relay you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a mistake using a relay, you are dead. In Sketches, you should use a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
+xWARNING: A relay is a component that allows you to control higher voltage with your controller. With a relay you can turn a lamp off on certain condition, turn on a solenoid, and a long long etcetera. The problem is that if you make a mistake using a relay, you are dead. In Sketches, you should use a RC component. They are cheap, and more than that, they are secure. No way to die. Please, use them.
 
 == A Simple Tutorial
 
