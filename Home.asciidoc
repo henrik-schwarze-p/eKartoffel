@@ -1,4 +1,4 @@
-= Kartoffel Documentation
+= eKartoffel Documentation
 ////
 Big ol' comment
 
